@@ -1,0 +1,57 @@
+Hier ist eine Liste meiner Plugins, die hilfreich sein könnten für die Entwicklung:
+
+Die Liste müsste mit der PowerShell ausgeführt werden.
+
+code --install-extensions 42Crunch.vscode-openapi
+code --install-extensions aaron-bond.better-comments
+code --install-extensions akamud.vscode-theme-onedark
+code --install-extensions azemoh.one-monokai
+code --install-extensions batisteo.vscode-django
+code --install-extensions christian-kohler.path-intellisense  
+code --install-extensions CoenraadS.bracket-pair-colorizer  
+code --install-extensions CoenraadS.bracket-pair-colorizer-2  
+code --install-extensions dbaeumer.vscode-eslint
+code --install-extensions donjayamanne.python-environment-manager
+code --install-extensions donjayamanne.python-extension-pack  
+code --install-extensions dracula-theme.theme-dracula
+code --install-extensions dsznajder.es7-react-js-snippets  
+code --install-extensions eamodio.gitlens
+code --install-extensions ecmel.vscode-html-css
+code --install-extensions esbenp.prettier-vscode
+code --install-extensions formulahendry.auto-rename-tag
+code --install-extensions GraphQL.vscode-graphql
+code --install-extensions himanoa.Python-autopep8
+code --install-extensions jpoissonnier.vscode-styled-components  
+code --install-extensions KevinRose.vsc-python-indent
+code --install-extensions kumar-harsh.graphql-for-vscode
+code --install-extensions MaxfieldWalker.vscode-color-theme-spirited-away
+code --install-extensions mechatroner.rainbow-csv
+code --install-extensions mikestead.dotenv
+code --install-extensions ms-azuretools.vscode-docker
+code --install-extensions ms-python.python
+code --install-extensions ms-python.vscode-pylance
+code --install-extensions ms-toolsai.jupyter
+code --install-extensions ms-toolsai.jupyter-keymap
+code --install-extensions ms-toolsai.jupyter-renderers
+code --install-extensions naumovs.color-highlight
+code --install-extensions njpwerner.autodocstring
+code --install-extensions oderwat.indent-rainbow
+code --install-extensions Prisma.prisma
+code --install-extensions redhat.vscode-commons
+code --install-extensions redhat.vscode-yaml
+code --install-extensions ritwickdey.LiveServer
+code --install-extensions rvest.vs-code-prettier-eslint
+code --install-extensions Shan.code-settings-sync
+code --install-extensions shd101wyy.markdown-preview-enhanced
+code --install-extensions silvenon.mdx
+code --install-extensions syler.sass-indented
+code --install-extensions tomoki1207.pdf
+code --install-extensions truman.autocomplate-shell
+code --install-extensions vincaslt.highlight-matching-tag
+code --install-extensions VisualStudioExptTeam.vscodeintellicode
+code --install-extensions vscode-icons-team.vscode-icons
+code --install-extensions wayou.vscode-todo-highlight
+code --install-extensions wholroyd.jinja
+code --install-extensions yzhang.markdown-all-in-one
+code --install-extensions zhuangtongfa.material-theme
+code --install-extensions Zignd.html-css-class-completion
