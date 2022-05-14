@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/Healthbeat/static/js/main.44f191a6.js",
+    "static/media/notify.png": "/Healthbeat/static/media/notify.a0fb8b8ba834db0f8401.png",
+    "index.html": "/Healthbeat/index.html",
+    "main.44f191a6.js.map": "/Healthbeat/static/js/main.44f191a6.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.44f191a6.js"
+  ]
+}
