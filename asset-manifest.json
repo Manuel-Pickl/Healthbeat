@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/Healthbeat/static/js/main.44f191a6.js",
+    "main.js": "/Healthbeat/static/js/main.779c6014.js",
     "static/media/notify.png": "/Healthbeat/static/media/notify.a0fb8b8ba834db0f8401.png",
     "index.html": "/Healthbeat/index.html",
-    "main.44f191a6.js.map": "/Healthbeat/static/js/main.44f191a6.js.map"
+    "main.779c6014.js.map": "/Healthbeat/static/js/main.779c6014.js.map"
   },
   "entrypoints": [
-    "static/js/main.44f191a6.js"
+    "static/js/main.779c6014.js"
   ]
 }
