@@ -6,7 +6,7 @@ import Greeting from './Greeting'
 export default function PopUp() {
   return (
   <div>
-    <h2>Pop-Up</h2>
+    <h3>Pop-Up</h3>
     <Popup modal trigger={<button>öffnen/schließen</button>}>
       {close => <Greeting close={close} />}
     </Popup>

@@ -5,9 +5,6 @@ import PopUp from "modules/greeting/components/PopUp"
 
 import notificationLogo from "./assets/notify.png"
 
-
-
-
 function App() {
   return (
     <>
