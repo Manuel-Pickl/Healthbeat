@@ -1,8 +1,12 @@
 import React from "react"
 
 import ComplainSurvey from "modules/complain-survey/components/ComplainSurvey"
+import PopUp from "modules/greeting/components/PopUp"
 
 import notificationLogo from "./assets/notify.png"
+
+
+
 
 function App() {
   return (
@@ -10,6 +14,7 @@ function App() {
       <h1>Healthbeat</h1>
       <button onClick={notifyMe}>Notify me!</button>
       <ComplainSurvey />
+      <PopUp />
     </>
   )
 }
