@@ -5,12 +5,7 @@ const config = {
   authority:
     "https://login.microsoftonline.com/019f352f-6328-4351-b9dc-ea7038582267", // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
   redirectUri: "http://localhost:3000",
-  scopes: [
-    "user.readbasic.all",
-    "user.read.all",
-    "user.read",
-    "calendars.read",
-  ],
+  scopes: ["user.read", "calendars.read", "mailboxSettings.read", "mail.read"],
 }
 
 export default config

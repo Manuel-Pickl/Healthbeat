@@ -1,6 +1,9 @@
 import { Client, PageIterator } from "@microsoft/microsoft-graph-client"
-import { endOfToday, startOfToday } from "date-fns"
+import { endOfDay, startOfDay } from "date-fns"
 import { zonedTimeToUtc } from "date-fns-tz"
+
+// zum testen der API:
+// https://developer.microsoft.com/en-us/graph/graph-explorer
 
 let graphClient = undefined
 
@@ -21,7 +24,7 @@ export async function getUser(authProvider) {
   const user = await graphClient
     .api("/me")
     // Only retrieve the specific fields needed
-    .select("displayName,mail,userPrincipalName")
+    .select("displayName,mail,mailboxSettings,userPrincipalName")
     .get()
 
   return user
@@ -29,42 +32,40 @@ export async function getUser(authProvider) {
 // </GetUserSnippet>
 
 // <GetUserWeekCalendarSnippet>
-export async function getUserDayCalendar(authProvider, timeZone) {
+export async function getUserDayCalendar(authProvider, timeZone, mail) {
   ensureClient(authProvider)
 
-  // Generate startDateTime and endDateTime query params
-  // to display a day window
   const now = new Date()
-  const startDateTime = zonedTimeToUtc(
-    startOfToday(now),
-    timeZone
-  ).toISOString()
-  const endDateTime = zonedTimeToUtc(endOfToday(now), timeZone).toISOString()
 
-  // GET /me/calendarview?startDateTime=''&endDateTime=''
-  // &$select=subject,organizer,start,end
-  // &$orderby=start/dateTime
-  // &$top=50
-  var response = await graphClient
-    .api("/me/calendarview")
-    .header("Prefer", `outlook.timezone="${timeZone}"`)
-    .query({ startDateTime: startDateTime, endDateTime: endDateTime })
-    .select("start,end")
-    .orderby("start/dateTime")
-    .get()
+  const scheduleInformation = {
+    schedules: [mail],
+    startTime: {
+      dateTime: zonedTimeToUtc(startOfDay(now), timeZone).toISOString(),
+      timeZone,
+    },
+    endTime: {
+      dateTime: zonedTimeToUtc(endOfDay(now), timeZone).toISOString(),
+      timeZone,
+    },
+    availabilityViewInterval: 15,
+  }
+
+  const response = await graphClient
+    .api("/me/calendar/getSchedule")
+    .post(scheduleInformation)
 
   if (response["@odata.nextLink"]) {
     // Presence of the nextLink property indicates more results are available
     // Use a page iterator to get all results
-    var events = []
+    const events = []
 
     // Must include the time zone header in page
     // requests too
-    var options = {
+    const options = {
       headers: { Prefer: `outlook.timezone="${timeZone}"` },
     }
 
-    var pageIterator = new PageIterator(
+    const pageIterator = new PageIterator(
       graphClient,
       response,
       event => {

@@ -1,4 +1,7 @@
+import { useEffect } from "react"
 import { useAppContext } from "configs/appContext"
+import { getUserDayCalendar } from "utils/graph"
+import { findIana } from "windows-iana"
 
 import ComplainSurvey from "modules/complain-survey/components/ComplainSurvey"
 import Greeting from "modules/greeting/components"
@@ -8,9 +11,31 @@ import notificationLogo from "./assets/notify.png"
 function App() {
   const app = useAppContext()
 
+  useEffect(() => {
+    const loadEvents = async () => {
+      if (app.user && app.authProvider) {
+        try {
+          const ianaTimeZones = findIana(app.user?.timeZone)
+          console.log(
+            await getUserDayCalendar(
+              app.authProvider,
+              ianaTimeZones[0].valueOf(),
+              app.user?.email
+            )
+          )
+        } catch (err) {
+          app.displayError(err.message)
+        }
+      }
+    }
+
+    loadEvents()
+  }, [app])
+
   return (
     <>
       <button onClick={() => app.signIn()}>Sign in</button>
+      <button onClick={() => app.signOut()}>Sign out</button>
       <h1>Healthbeat</h1>
       <button onClick={notifyMe}>Notify me!</button>
       <ComplainSurvey />
