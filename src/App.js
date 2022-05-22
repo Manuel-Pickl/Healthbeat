@@ -1,16 +1,21 @@
+import { useAppContext } from "configs/appContext"
+
 import ComplainSurvey from "modules/complain-survey/components/ComplainSurvey"
-import PopUp from "modules/greeting/components/PopUp"
+import Greeting from "modules/greeting/components"
 
 import notificationLogo from "./assets/notify.png"
 
 function App() {
+  const app = useAppContext()
+
   return (
     <>
+      <button onClick={() => app.signIn()}>Sign in</button>
       <h1>Healthbeat</h1>
       <button onClick={notifyMe}>Notify me!</button>
       <ComplainSurvey />
 
-      <PopUp />
+      <Greeting />
     </>
   )
 }

@@ -1,24 +1,33 @@
-import React from 'react';
+import React from "react"
+import { useAppContext } from "configs/appContext"
 
-const rhetoQuest = " Na, heute schon Sport gemacht?"
-var username = "Andreas";
+import PopUp from "./PopUp"
 
 export default function Greeting() {
-  const date = new Date();
-  const hour = date.getHours();
-  return (
-  <div>
-    {(() => {
-      if (hour > 5 && hour < 11) {
-        return ( <div>Guten Morgen {username}!<p>{rhetoQuest}</p></div> )
-        }
-      else if (hour > 11 && hour < 20) {
-        return ( <div>Guten Tag {username}!<p>{rhetoQuest}</p></div> ) 
-        }
-      else {
-        return ( <div>Guten Abend {username}!<p>{rhetoQuest}</p></div> )
-        }
-        })()}
-  </div>
-  )
+  const app = useAppContext()
+  const rhetoQuest = " Na, heute schon Sport gemacht?"
+
+  const greetings = (hour = new Date().getHours()) => {
+    if (hour > 5 && hour < 11) {
+      return (
+        <div>
+          Guten Morgen {app.user?.displayName}!<p>{rhetoQuest}</p>
+        </div>
+      )
+    } else if (hour > 11 && hour < 20) {
+      return (
+        <div>
+          Guten Tag {app.user?.displayName}!<p>{rhetoQuest}</p>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          Guten Abend {app.user?.displayName}!<p>{rhetoQuest}</p>
+        </div>
+      )
+    }
+  }
+
+  return <PopUp content={greetings()} />
 }
