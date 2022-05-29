@@ -16,7 +16,16 @@ const complaintDegree = {
 
 export default function ComplainSurvey() {
   const [visbility, toggleVisiblity] = useState(false)
-  const [rangeVal, setRangeVal] = useState(false)
+  const [rangeVal, setRangeVal] = useState(1)
+  const [disabled, setButton] = useState(true)
+  const [currentRegion, setRegion] = useState("")
+
+  const saveSurvey = () => {
+    localStorage.setItem(
+      "complainSurvey",
+      JSON.stringify({ region: currentRegion, pain: rangeVal })
+    )
+  }
 
   return (
     <>
@@ -25,14 +34,26 @@ export default function ComplainSurvey() {
           <p>Wo hast du heute Beschwerden?</p>
           <ul>
             {regions.map(region => (
-              <li>
-                <input type="radio" value={region} key={region} name="pain" />
+              <li key={region}>
+                <input
+                  type="radio"
+                  value={region}
+                  name="pain"
+                  defaultChecked={currentRegion.localeCompare(region) === 0}
+                  onClick={() => {
+                    setButton(false)
+                    setRegion(region)
+                  }}
+                />
                 {region}
               </li>
             ))}
           </ul>
-          <button onClick={() => toggleVisiblity(true)}>
-            Aktualisieren und Speichern
+          <button
+            onClick={() => toggleVisiblity(true)}
+            disabled={!currentRegion.length > 0 || disabled}
+          >
+            Fortfahren
           </button>
         </div>
       ) : (
@@ -44,6 +65,7 @@ export default function ComplainSurvey() {
             min="1"
             max="10"
             step="1"
+            defaultValue={1}
             onChange={event => setRangeVal(event.target.value)}
           />
           <p>
@@ -51,7 +73,16 @@ export default function ComplainSurvey() {
             <b>{rangeVal + " - " + complaintDegree[rangeVal]}</b>
           </p>
 
-          <button onClick={() => toggleVisiblity(false)}>Zurück</button>
+          <button
+            onClick={() => {
+              toggleVisiblity(false)
+              if (currentRegion.length === 0) setButton(true)
+              else setButton(false)
+            }}
+          >
+            Zurück
+          </button>
+          <button onClick={saveSurvey}>Speichern</button>
         </div>
       )}
     </>
