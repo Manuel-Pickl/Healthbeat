@@ -1,5 +1,4 @@
-import { Client, PageIterator } from "@microsoft/microsoft-graph-client"
-import { endOfDay, startOfDay } from "date-fns"
+import { Client } from "@microsoft/microsoft-graph-client"
 import { zonedTimeToUtc } from "date-fns-tz"
 
 // zum testen der API:
@@ -32,54 +31,49 @@ export async function getUser(authProvider) {
 // </GetUserSnippet>
 
 // <GetUserWeekCalendarSnippet>
-export async function getUserDayCalendar(authProvider, timeZone, mail) {
+export async function getUserDayCalendar(
+  authProvider,
+  workingHours,
+  timeZone,
+  mail
+) {
   ensureClient(authProvider)
 
-  const now = new Date()
+  const { startTime, endTime } = workingHours
 
+  const startingTime = new Date()
+  const endingTime = new Date()
+
+  // adjust to working hours
+  let temp = startTime.split(".")[0].split(":")
+  startingTime.setHours(+temp[0])
+  startingTime.setMinutes(+temp[1])
+  startingTime.setMilliseconds(+temp[2])
+
+  temp = endTime.split(".")[0].split(":")
+  endingTime.setHours(+temp[0])
+  endingTime.setMinutes(+temp[1])
+  endingTime.setMilliseconds(+temp[2])
+
+  // config
   const scheduleInformation = {
     schedules: [mail],
     startTime: {
-      dateTime: zonedTimeToUtc(startOfDay(now), timeZone).toISOString(),
+      dateTime: zonedTimeToUtc(startingTime, timeZone).toISOString(),
       timeZone,
     },
     endTime: {
-      dateTime: zonedTimeToUtc(endOfDay(now), timeZone).toISOString(),
+      dateTime: zonedTimeToUtc(endingTime, timeZone).toISOString(),
       timeZone,
     },
-    availabilityViewInterval: 15,
+    availabilityViewInterval: 5,
   }
 
+  // request
   const response = await graphClient
     .api("/me/calendar/getSchedule")
     .post(scheduleInformation)
 
-  if (response["@odata.nextLink"]) {
-    // Presence of the nextLink property indicates more results are available
-    // Use a page iterator to get all results
-    const events = []
-
-    // Must include the time zone header in page
-    // requests too
-    const options = {
-      headers: { Prefer: `outlook.timezone="${timeZone}"` },
-    }
-
-    const pageIterator = new PageIterator(
-      graphClient,
-      response,
-      event => {
-        events.push(event)
-        return true
-      },
-      options
-    )
-
-    await pageIterator.iterate()
-
-    return events
-  } else {
-    return response.value
-  }
+  return response.value
 }
 // </GetUserWeekCalendarSnippet>

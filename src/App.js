@@ -1,16 +1,14 @@
 import { useEffect } from "react"
 import { useAppContext } from "configs/appContext"
 import { getUserDayCalendar } from "utils/graph"
+import { notify } from "utils/notification"
 import { findIana } from "windows-iana"
 
 import ComplainSurvey from "modules/complain-survey/components/ComplainSurvey"
 import Greeting from "modules/greeting/components"
 
-import notificationLogo from "./assets/notify.png"
-
 function App() {
   const app = useAppContext()
-
   useEffect(() => {
     const loadEvents = async () => {
       if (app.user && app.authProvider) {
@@ -19,6 +17,7 @@ function App() {
           console.log(
             await getUserDayCalendar(
               app.authProvider,
+              app.user?.workingHours,
               ianaTimeZones[0].valueOf(),
               app.user?.email
             )
@@ -37,7 +36,7 @@ function App() {
       <button onClick={() => app.signIn()}>Sign in</button>
       <button onClick={() => app.signOut()}>Sign out</button>
       <h1>Healthbeat</h1>
-      <button onClick={notifyMe}>Notify me!</button>
+      <button onClick={notify}>Notify me!</button>
       <ComplainSurvey />
 
       <Greeting />
@@ -56,17 +55,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (Notification.permission !== "granted") Notification.requestPermission()
 })
-
-function notifyMe() {
-  if (Notification.permission !== "granted") {
-    Notification.requestPermission()
-  } else {
-    var notification = new Notification("Zeit für etwas Sport", {
-      icon: notificationLogo,
-      body: "Du hast nun für 15 Minuten keine weiteren Termine\n\nWir haben 2 Übungen gegen Hüftbeschwerden für Dich vorbereitet.",
-    })
-    notification.onclick = function () {
-      window.open("http://stackoverflow.com/a/13328397/1269037")
-    }
-  }
-}

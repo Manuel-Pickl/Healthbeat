@@ -64,12 +64,13 @@ function useProvideAppContext() {
           if (account) {
             // Get the user from Microsoft Graph
             const user = await getUser(authProvider)
-            console.log(user)
+
             setUser({
               displayName: user.displayName || "",
               email: user.mail || user.userPrincipalName || "",
               timeFormat: user.mailboxSettings?.timeFormat || "h:mm a",
               timeZone: user.mailboxSettings?.timeZone || "UTC",
+              workingHours: user.mailboxSettings?.workingHours,
             })
           }
         } catch (err) {
@@ -96,6 +97,7 @@ function useProvideAppContext() {
       email: user.mail || user.userPrincipalName || "",
       timeFormat: user.mailboxSettings?.timeFormat || "h:mm a",
       timeZone: user.mailboxSettings?.timeZone || "UTC",
+      workingHours: user.mailboxSettings?.workingHours || {},
     })
   }
   // </SignInSnippet>
