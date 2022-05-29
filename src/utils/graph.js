@@ -1,4 +1,7 @@
-import { Client } from "@microsoft/microsoft-graph-client"
+import {
+  AuthenticationProvider,
+  Client,
+} from "@microsoft/microsoft-graph-client"
 import { zonedTimeToUtc } from "date-fns-tz"
 
 // zum testen der API:
@@ -30,7 +33,15 @@ export async function getUser(authProvider) {
 }
 // </GetUserSnippet>
 
-// <GetUserWeekCalendarSnippet>
+/**
+ * *  URS-005 - Kalender abhängige Erinnerung
+ *
+ * @param {AuthenticationProvider} authProvider
+ * @param {Object} workingHours
+ * @param {String} timeZone
+ * @param {String} mail
+ * @returns
+ */
 export async function getUserDayCalendar(
   authProvider,
   workingHours,
@@ -76,4 +87,3 @@ export async function getUserDayCalendar(
 
   return response.value
 }
-// </GetUserWeekCalendarSnippet>
