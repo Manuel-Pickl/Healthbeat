@@ -40,7 +40,7 @@ export async function getUser(authProvider) {
  * @param {Object} workingHours
  * @param {String} timeZone
  * @param {String} mail
- * @returns
+ * @returns {Object[]}
  */
 export async function getUserDayCalendar(
   authProvider,

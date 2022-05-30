@@ -1,27 +1,39 @@
 import { useEffect } from "react"
+import { Route, Routes } from "react-router"
+import { AuthenticatedTemplate } from "@azure/msal-react"
 import { useAppContext } from "configs/appContext"
 import { getUserDayCalendar } from "utils/graph"
 import { notify } from "utils/notification"
 import { findIana } from "windows-iana"
 
-import ComplainSurvey from "modules/complain-survey/components/ComplainSurvey"
 import Greeting from "modules/greeting/components"
+import Navigation from "modules/navigation/components/Navigation"
+import ComplainSurvey from "pages/complainSurvey/ComplainSurvey"
+import LandingPage from "pages/landingPage/LandingPage"
 
 function App() {
   const app = useAppContext()
+
   useEffect(() => {
     const loadEvents = async () => {
-      if (app.user && app.authProvider) {
+      if (!!window && app.user && app.authProvider) {
         try {
+          // convert time for calendar
           const ianaTimeZones = findIana(app.user?.timeZone)
-          console.log(
-            await getUserDayCalendar(
-              app.authProvider,
-              app.user?.workingHours,
-              ianaTimeZones[0].valueOf(),
-              app.user?.email
-            )
+
+          // request calendar data
+          const calendar = await getUserDayCalendar(
+            app.authProvider,
+            app.user?.workingHours,
+            ianaTimeZones[0].valueOf(),
+            app.user?.email
           )
+
+          // destruct data
+          const { availabilityView } = calendar[0]
+
+          // create notifications
+          notify(availabilityView, window.location.href)
         } catch (err) {
           app.displayError(err.message)
         }
@@ -33,13 +45,14 @@ function App() {
 
   return (
     <>
-      <button onClick={() => app.signIn()}>Sign in</button>
-      <button onClick={() => app.signOut()}>Sign out</button>
-      <h1>Healthbeat</h1>
-      <button onClick={notify}>Notify me!</button>
-      <ComplainSurvey />
-
-      <Greeting />
+      <Navigation />
+      <AuthenticatedTemplate>
+        <Greeting />
+      </AuthenticatedTemplate>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/complain-survey" element={<ComplainSurvey />} />
+      </Routes>
     </>
   )
 }
@@ -47,11 +60,14 @@ function App() {
 export default App
 
 // request permission on page load
-document.addEventListener("DOMContentLoaded", function () {
-  if (!Notification) {
-    alert("Desktop notifications not available in your browser. Try Chromium.")
-    return
-  }
+!!document &&
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!Notification) {
+      alert(
+        "Desktop notifications not available in your browser. Try Chromium."
+      )
+      return
+    }
 
-  if (Notification.permission !== "granted") Notification.requestPermission()
-})
+    if (Notification.permission !== "granted") Notification.requestPermission()
+  })

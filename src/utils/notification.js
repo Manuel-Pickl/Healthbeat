@@ -76,6 +76,7 @@ export function extractFreeTimeslots(timeslots) {
  *
  */
 function createNotificationTimer(freeTime, url) {
+  // console.log(freeTime, url)
   // TODO es soll ein timer aufgesetzt werden für die notifications in den freien zeiten - freeTime.map(...)
   // const notification = new Notification("Zeit für etwas Sport", {
   //   icon: notificationLogo,

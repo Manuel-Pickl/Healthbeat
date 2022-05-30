@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import { useAppContext } from "configs/appContext"
+import storageTypes from "configs/storageTypes"
 
 import { Container, Content, Schließen } from "./Greeting.styles"
 
 export default function Greeting() {
   const app = useAppContext()
   const rhetoQuest = " Na, heute schon Sport gemacht?"
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
 
   // Zeitabfrage, um die drei unterschiedlichen Begrüßungsformen zu erhalten
   const greetings = (hour = new Date().getHours()) => {
@@ -31,26 +32,33 @@ export default function Greeting() {
     }
   }
 
-  return !show ? (
-    <button onClick={() => setShow(!show)}>Pop-Up</button>
-  ) : (
-    <>
-      <Container
-        show={show}
-        className="unsichtbar"
-        onClick={e => {
-          e.stopPropagation()
-          setShow(false)
-        }}
-      >
-        <Content>
-          <p className="text">{greetings()}</p>
-          <Schließen className="okay" onClick={() => setShow(false)}>
-            schließen
-          </Schließen>
-        </Content>
-      </Container>
-      <button onClick={() => setShow(!show)}>Pop-Up</button>
-    </>
+  return (
+    <Container
+      show={
+        // show popup only once per sign in
+        (show &&
+          sessionStorage.getItem(storageTypes.greeted) &&
+          !JSON.parse(sessionStorage.getItem(storageTypes.greeted))) ||
+        (show && !!!sessionStorage.getItem(storageTypes.greeted))
+      }
+      onClick={e => {
+        e.stopPropagation()
+        setShow(false)
+        sessionStorage.setItem(storageTypes.greeted, "true")
+      }}
+    >
+      <Content>
+        <div className="text">{greetings()}</div>
+        <Schließen
+          className="okay"
+          onClick={() => {
+            setShow(false)
+            sessionStorage.setItem(storageTypes.greeted, "true")
+          }}
+        >
+          schließen
+        </Schließen>
+      </Content>
+    </Container>
   )
 }

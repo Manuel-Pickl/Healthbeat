@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router"
+import storageTypes from "configs/storageTypes"
 
 const regions = ["Rücken", "Nacken", "Schulter", "Hüfte", "Keine Schmerzen"]
 const complaintDegree = {
@@ -19,11 +21,21 @@ export default function ComplainSurvey() {
   const [rangeVal, setRangeVal] = useState(1)
   const [disabled, setButton] = useState(true)
   const [currentRegion, setRegion] = useState("")
+  const navigate = useNavigate()
 
   const saveSurvey = () => {
+    // next survey in 4 weeks
+    const date = new Date()
+    date.setDate(date.getDate() + 4 * 7)
+
+    // set items
     localStorage.setItem(
-      "complainSurvey",
-      JSON.stringify({ region: currentRegion, pain: rangeVal })
+      storageTypes.complainSurvey,
+      JSON.stringify({
+        region: currentRegion,
+        scaleOfPain: rangeVal,
+        nextSurveyDate: date,
+      })
     )
   }
 
@@ -82,7 +94,14 @@ export default function ComplainSurvey() {
           >
             Zurück
           </button>
-          <button onClick={saveSurvey}>Speichern</button>
+          <button
+            onClick={() => {
+              saveSurvey()
+              navigate("/")
+            }}
+          >
+            Speichern
+          </button>
         </div>
       )}
     </>
