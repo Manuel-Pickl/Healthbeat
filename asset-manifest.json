@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/Healthbeat/static/js/main.f80dafa2.js",
+    "main.js": "/Healthbeat/static/js/main.69b50c17.js",
     "static/media/notify.png": "/Healthbeat/static/media/notify.a0fb8b8ba834db0f8401.png",
     "static/media/heart.svg": "/Healthbeat/static/media/heart.15c4c2c31f6f1d38bc954bb6bf9d2241.svg",
     "index.html": "/Healthbeat/index.html",
-    "main.f80dafa2.js.map": "/Healthbeat/static/js/main.f80dafa2.js.map"
+    "main.69b50c17.js.map": "/Healthbeat/static/js/main.69b50c17.js.map"
   },
   "entrypoints": [
-    "static/js/main.f80dafa2.js"
+    "static/js/main.69b50c17.js"
   ]
 }
