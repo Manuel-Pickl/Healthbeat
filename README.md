@@ -1,4 +1,4 @@
-# [Healthbeat]([https://Manuel-Pickl.github.io/Healthbeat/](https://healthbeat.netlify.app/))
+# [Healthbeat](https://healthbeat.netlify.app)
 
 ### Healthbeat ist eine Cloud-Anwendung, welche MitarbeiterInnen auf ihren gesundheitlichen Reisen bestmöglich begleitet und individualisierte und präventive Hilfestellungen für eine lange und gesunde Weiterreise gibt.
 
