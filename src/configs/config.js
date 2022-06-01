@@ -4,7 +4,10 @@ const config = {
   appId: "279046de-451b-4968-ab8f-e599f9499385",
   authority:
     "https://login.microsoftonline.com/019f352f-6328-4351-b9dc-ea7038582267", // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
-  redirectUri: "http://localhost:3000",
+  redirectUri:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://healthbeat.netlify.app/",
   scopes: ["user.read", "calendars.read", "mailboxSettings.read", "mail.read"],
 }
 
