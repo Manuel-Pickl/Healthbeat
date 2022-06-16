@@ -32,6 +32,8 @@ export function notify(availableTime, url) {
  *
  * e.g. for a normal work day starting at 8 am till 5 pm
  * "222222222222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+ *
+ * @returns {number[]} timeslots in ms
  */
 export function extractFreeTimeslots(timeslots) {
   if (timeslots.length === 0 || timeslots.length < 6) return []
@@ -76,6 +78,7 @@ export function extractFreeTimeslots(timeslots) {
  *
  */
 function createNotificationTimer(freeTime, url) {
+  // const time = [100000, 120000] -> setTimeout(löse Notification aus,100000)
   // console.log(freeTime, url)
   // TODO es soll ein timer aufgesetzt werden für die notifications in den freien zeiten - freeTime.map(...)
   // const notification = new Notification("Zeit für etwas Sport", {

@@ -3,6 +3,8 @@ const { createGlobalStyle } = require("styled-components")
 export const GlobalStyle = createGlobalStyle`
 :root{
  --clr-white: #F4EEFC;
+ --clr-primary: #EE7203;
+ --clr-hover: #FF9F49;
 
  --ff-primary: "Segoe UI", sans-serif;
 
