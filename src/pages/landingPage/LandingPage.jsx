@@ -11,12 +11,15 @@ function LandingPage() {
   return (
     <>
       <AboHeader>
-        <h1>Abos</h1>
+        <h1>Was ist Healthbeat?</h1>
+      </AboHeader>
+      <AboHeader>
+        <h2>Abos</h2>
       </AboHeader>
       <GridContainer>
-        <AboBox SVG={Bronze} text={"Bronze"} link={"/"} />
-        <AboBox SVG={Silber} text={"Silber"} link={"/"} />
-        <AboBox SVG={Gold} text={"Gold"} link={"/"} />
+        <AboBox SVG={Bronze} text={"Feature"} link={"/"} />
+        <AboBox SVG={Silber} text={"Feature"} link={"/"} />
+        <AboBox SVG={Gold} text={"Feature"} link={"/"} />
       </GridContainer>
     </>
   )

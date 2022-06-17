@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
  --clr-white: #F4EEFC;
  --clr-primary: #EE7203;
  --clr-hover: #FF9F49;
+ --clr-click: #DD6A04;
  --clr-background: #FFF2E6;
 
  --ff-primary: "Segoe UI", sans-serif;
