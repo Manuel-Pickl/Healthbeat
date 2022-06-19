@@ -3,12 +3,15 @@ const { createGlobalStyle } = require("styled-components")
 export const GlobalStyle = createGlobalStyle`
 :root{
  --clr-white: #F4EEFC;
- --clr-primary: #EE7203;
+ --clr-primary: #EE7203; // primary company color
  --clr-hover: #FF9F49;
  --clr-click: #DD6A04;
  --clr-background: #FFF2E6;
  --clr-disabled: #DFDFDF;
  --clr-disabledText: #727272;
+ --clr-text-clr: #000000; // primary company color
+ --clr-success: #468f33;
+ --clr-error: #e2001a; // primary company color
 
  --ff-primary: "Segoe UI", sans-serif;
 
@@ -22,6 +25,28 @@ export const GlobalStyle = createGlobalStyle`
  --lineHeight-tight: 1.1;
  --lineHeight-normal: 1.5;
  --lineHeight-relaxed: 1.625;
+ 
+ // gap values
+ --gap-8: 8px;
+ --gap-16: 16px;
+ --gap-24: 24px;
+ --gap-32: 32px;
+ --gap-40: 40px;
+ --gap-48: 48px;
+ --gap-56: 56px;
+ --gap-64: 64px;
+ --gap-80: 80px;
+ --gap-120: 120px;
+
+ // query width's
+ --desktop-max-width: 1512px;
+ --desktop-max-width: 1512px;
+
+ --tablet-max-width: 834px;
+ --tablet-min-width: 641px;
+
+ --mobile-max-width: 640px;
+ --mobile-min-width: 320px;
 }
 
 /*
