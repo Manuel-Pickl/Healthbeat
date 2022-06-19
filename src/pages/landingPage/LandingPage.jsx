@@ -22,31 +22,37 @@ const fliesstext =
 
 function LandingPage() {
   return (
-    <>
+    <main>
       <AboHeader>
         <h1>Was ist Healthbeat?</h1>
       </AboHeader>
       <GridContainer2>
         <div></div>
         <HealthbeatPic SVG={LandingPic1} />
-        <HealthbeatDesc header={"Test"} text={fliesstext} />
+        <HealthbeatDesc header={"Geschichte Unternehmen"} text={fliesstext} />
         <div></div>
       </GridContainer2>
       <GridContainer4>
         <HealthbeatPic SVG={LandingPic2} />
-        <HealthbeatDesc header={"Test"} text={fliesstext} />
-        <HealthbeatDesc header={"Test"} text={fliesstext} />
+        <HealthbeatDesc
+          header={"Gemeinsam als Team Sport machen"}
+          text={fliesstext}
+        />
+        <HealthbeatDesc
+          header={"Problem der Büroarbeit, unsere App zum Sport anregen"}
+          text={fliesstext}
+        />
         <HealthbeatPic SVG={LandingPic3} />
       </GridContainer4>
       <AboHeader>
         <h2>Abos</h2>
       </AboHeader>
       <GridContainer3>
-        <AboBox SVG={Bronze} text={"Feature"} link={"/"} />
-        <AboBox SVG={Silber} text={"Feature"} link={"/"} />
-        <AboBox SVG={Gold} text={"Feature"} link={"/"} />
+        <AboBox SVG={Bronze} text={"Feature"} />
+        <AboBox SVG={Silber} text={"Feature"} />
+        <AboBox SVG={Gold} text={"Feature"} />
       </GridContainer3>
-    </>
+    </main>
   )
 }
 

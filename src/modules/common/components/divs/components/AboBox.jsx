@@ -4,9 +4,9 @@ import DetailsButton from "modules/common/components/buttons/components/DetailsB
 
 import * as Styled from "./AboBox.styles"
 
-export default function AboBox({ SVG, text, link }) {
+export default function AboBox({ SVG, text }) {
   return (
-    <Styled.StyledLink to={link}>
+    <Styled.StyledLink>
       <div>{<SVG />}</div>
       <div>{text}</div>
       <div>{text}</div>

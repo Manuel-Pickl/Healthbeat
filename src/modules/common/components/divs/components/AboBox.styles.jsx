@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
+//import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.div`
   display: grid;
   text-align: center;
   justify-content: center;
@@ -13,6 +13,4 @@ export const StyledLink = styled(Link)`
   min-width: 120px;
   height: 413px;
   padding: 32px 8px;
-  cursor: pointer;
-  text-decoration: none;
 `

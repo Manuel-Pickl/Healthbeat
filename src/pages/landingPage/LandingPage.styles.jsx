@@ -8,6 +8,10 @@ export const GridContainer3 = styled.div`
   margin-left: 104px;
   margin-right: 104px;
   margin-bottom: 64px;
+
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 100%;
+  }
 `
 
 export const GridContainer4 = styled.div`
@@ -19,6 +23,14 @@ export const GridContainer4 = styled.div`
   margin-bottom: 64px;
   margin-left: 104px;
   margin-right: 104px;
+
+  @media only screen and (max-width: 834px) {
+    grid-template-columns: 100%;
+  }
+
+  @media only screen and (max-width: 360px) {
+    grid-template-columns: 100%;
+  }
 `
 
 export const GridContainer2 = styled.div`
@@ -30,6 +42,10 @@ export const GridContainer2 = styled.div`
   margin-bottom: 64px;
   margin-left: 104px;
   margin-right: 104px;
+
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 100%;
+  }
 `
 
 export const AboHeader = styled.div`
