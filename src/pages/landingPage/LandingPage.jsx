@@ -7,52 +7,47 @@ import { ReactComponent as LandingPic2 } from "assets/landingpage/landingPic2.sv
 import { ReactComponent as LandingPic3 } from "assets/landingpage/landingPic3.svg"
 
 import AboBox from "modules/common/components/divs/components/AboBox"
-import HealthbeatDesc from "modules/common/components/divs/components/HealthbeatDesc"
-import HealthbeatPic from "modules/common/components/divs/components/HealthbeatPic"
+import HealthbeatDesc from "modules/healthbeat-desc/HealthbeatDesc"
 
-import {
-  AboHeader,
-  GridContainer2,
-  GridContainer3,
-  GridContainer4,
-} from "./LandingPage.styles"
+import * as Styled from "./LandingPage.styles"
 
 const fliesstext =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum."
 
 function LandingPage() {
   return (
-    <main>
-      <AboHeader>
-        <h1>Was ist Healthbeat?</h1>
-      </AboHeader>
-      <GridContainer2>
-        <div></div>
-        <HealthbeatPic SVG={LandingPic1} />
-        <HealthbeatDesc header={"Geschichte Unternehmen"} text={fliesstext} />
-        <div></div>
-      </GridContainer2>
-      <GridContainer4>
-        <HealthbeatPic SVG={LandingPic2} />
+    <Styled.Main>
+      <h1>Was ist Healthbeat?</h1>
+      <Styled.Content>
         <HealthbeatDesc
-          header={"Gemeinsam als Team Sport machen"}
-          text={fliesstext}
+          text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
+          header={"test"}
+          SVG={LandingPic1}
         />
-        <HealthbeatDesc
-          header={"Problem der Büroarbeit, unsere App zum Sport anregen"}
-          text={fliesstext}
-        />
-        <HealthbeatPic SVG={LandingPic3} />
-      </GridContainer4>
-      <AboHeader>
-        <h2>Abos</h2>
-      </AboHeader>
-      <GridContainer3>
+        <div>
+          <HealthbeatDesc
+            text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
+            header={"test"}
+            SVG={LandingPic2}
+          />
+          <HealthbeatDesc
+            text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
+            header={"test"}
+            SVG={LandingPic3}
+            right
+          />
+        </div>
+      </Styled.Content>
+      <h2>Abos</h2>
+      <Styled.Abos>
         <AboBox SVG={Bronze} text={"Feature"} />
         <AboBox SVG={Silber} text={"Feature"} />
         <AboBox SVG={Gold} text={"Feature"} />
-      </GridContainer3>
-    </main>
+      </Styled.Abos>
+    </Styled.Main>
   )
 }
 

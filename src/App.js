@@ -1,16 +1,11 @@
 import { useEffect } from "react"
 import { Route, Routes } from "react-router"
 import { AuthenticatedTemplate } from "@azure/msal-react"
-import { ReactComponent as Contact } from "assets/buttons/contact.svg"
-import { ReactComponent as Home } from "assets/buttons/home.svg"
-import { ReactComponent as Login } from "assets/buttons/login.svg"
-import { ReactComponent as Member } from "assets/buttons/member.svg"
 import { useAppContext } from "configs/appContext"
 import { getUserDayCalendar } from "utils/graph"
 import { notify } from "utils/notification"
 import { findIana } from "windows-iana"
 
-import NavigationButton from "modules/common/components/buttons/components/NavigationButton"
 import Greeting from "modules/greeting/components"
 import Navigation from "modules/navigation/components/Navigation"
 import ComplainSurvey from "pages/complainSurvey/ComplainSurvey"
@@ -51,10 +46,6 @@ function App() {
   return (
     <>
       <Navigation />
-      <NavigationButton SVG={Home} text={"Startseite"} link={"/"} />
-      <NavigationButton SVG={Member} text={"Mitglied werden!"} link={"/"} />
-      <NavigationButton SVG={Contact} text={"Kontakt"} link={"/"} />
-      <NavigationButton SVG={Login} text={"Log in"} link={"/"} />
 
       <AuthenticatedTemplate>
         <Greeting />

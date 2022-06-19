@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const GridContainer3 = styled.div`
+export const Abos = styled.div`
   display: grid;
   align-items: center;
   grid-template-columns: auto auto auto; /* drei Spalten */
@@ -11,6 +11,27 @@ export const GridContainer3 = styled.div`
 
   @media only screen and (max-width: 600px) {
     grid-template-columns: 100%;
+  }
+`
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 64px;
+
+  & > div:first-of-type {
+    max-width: 710px;
+    margin-bottom: 48px;
+  }
+
+  & > div {
+    display: flex;
+
+    & > :first-child {
+      margin-right: 48px;
+    }
   }
 `
 
@@ -50,4 +71,15 @@ export const GridContainer2 = styled.div`
 
 export const AboHeader = styled.div`
   text-align: center;
+`
+
+export const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  & > h1,
+  & > h2 {
+    text-align: center;
+  }
 `

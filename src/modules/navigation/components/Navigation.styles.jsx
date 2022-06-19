@@ -22,14 +22,17 @@ export const Nav = styled.nav`
     list-style: none;
     margin-left: auto;
 
-    & li:first-child {
-      display: inline-block;
-      margin-right: 15px;
-    }
+    li {
+      margin-right: 8px;
 
-    & li:hover,
-    li:focus {
-      cursor: pointer;
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
     }
   }
 `

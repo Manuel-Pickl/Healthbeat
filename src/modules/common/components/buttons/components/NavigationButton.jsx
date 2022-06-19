@@ -5,7 +5,7 @@ import * as Styled from "./NavigationButton.styles"
 export default function NavigationButton({ SVG, text, link }) {
   return (
     <Styled.StyledLink to={link}>
-      <div>{<SVG />}</div>
+      {SVG ? <SVG /> : null}
       <p>{text}</p>
     </Styled.StyledLink>
   )
