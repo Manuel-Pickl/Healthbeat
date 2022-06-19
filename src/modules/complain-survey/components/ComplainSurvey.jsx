@@ -1,6 +1,17 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router"
+import { ReactComponent as Complain } from "assets/complainpage/complain.svg"
+import { ReactComponent as Pain } from "assets/complainpage/pain.svg"
 import storageTypes from "configs/storageTypes"
+
+import DetailsButton from "modules/common/components/buttons/components/DetailsButton"
+
+import {
+  GridContainer,
+  NewInput,
+  SurveyHeader,
+  SVGContainer
+} from "./ComplainSurvey.styles"
 
 const regions = ["Rücken", "Nacken", "Schulter", "Hüfte", "Keine Schmerzen"]
 const complaintDegree = {
@@ -42,12 +53,16 @@ export default function ComplainSurvey() {
   return (
     <>
       {!visbility ? (
-        <div>
-          <p>Wo hast du heute Beschwerden?</p>
+        <GridContainer>
+          <SurveyHeader>
+            <h1>Beschwerdeabfrage</h1>
+            <SVGContainer><Complain/></SVGContainer>
+            <h1>Wo hast du heute Beschwerden?</h1>
+          </SurveyHeader>
           <ul>
             {regions.map(region => (
               <li key={region}>
-                <input
+                <NewInput
                   type="radio"
                   value={region}
                   name="pain"
@@ -61,48 +76,50 @@ export default function ComplainSurvey() {
               </li>
             ))}
           </ul>
-          <button
-            onClick={() => toggleVisiblity(true)}
-            disabled={!currentRegion.length > 0 || disabled}
-          >
-            Fortfahren
-          </button>
-        </div>
+          <SurveyHeader>
+            <button
+              onClick={() => toggleVisiblity(true)}
+              disabled={!currentRegion.length > 0 || disabled}
+            >
+              Weiter
+            </button>
+          </SurveyHeader>
+        </GridContainer>
       ) : (
-        <div>
-          <p>Wie stark sind deine Schmerzen?</p>
-          <input
-            type="range"
-            className="custom-range"
-            min="1"
-            max="10"
-            step="1"
-            defaultValue={1}
-            onChange={event => setRangeVal(event.target.value)}
-          />
-          <p>
-            Dein Schmerzgrad liegt bei:{" "}
-            <b>{rangeVal + " - " + complaintDegree[rangeVal]}</b>
-          </p>
+        <GridContainer>
+          <SurveyHeader>
+            <h1>Beschwerdeabfrage</h1>
+            <SVGContainer><Pain/></SVGContainer>
+            <h1>Wie stark sind deine Schmerzen?</h1>
+            <input
+              type="range"
+              className="custom-range"
+              min="1"
+              max="10"
+              step="1"
+              defaultValue={1}
+              onChange={event => setRangeVal(event.target.value)}
+            />
+            <p>
+              Dein Schmerzgrad liegt bei:{" "}
+              <b>{rangeVal + " - " + complaintDegree[rangeVal]}</b>
+            </p>
 
-          <button
-            onClick={() => {
-              toggleVisiblity(false)
-              if (currentRegion.length === 0) setButton(true)
-              else setButton(false)
-            }}
-          >
-            Zurück
-          </button>
-          <button
-            onClick={() => {
-              saveSurvey()
-              navigate("/")
-            }}
-          >
-            Speichern
-          </button>
-        </div>
+            <DetailsButton text={"Zurück"} link={"/"}
+              onClick={() => {
+                toggleVisiblity(false)
+                if (currentRegion.length === 0) setButton(true)
+                else setButton(false)
+              }}
+            />
+            <DetailsButton text={"Speichern"} link={"/"}
+              onClick={() => {
+                saveSurvey()
+                navigate("/")
+              }}
+            />
+          </SurveyHeader>
+        </GridContainer>
       )}
     </>
   )
