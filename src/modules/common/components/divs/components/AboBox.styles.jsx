@@ -10,7 +10,7 @@ export const StyledLink = styled.div`
   color: var(--clr-test);
   background-color: var(--clr-background);
   font-weight: bold;
-  min-width: 120px;
-  height: 413px;
+  //min-width: 120px;
+  height: 403px;
   padding: 32px 8px;
 `

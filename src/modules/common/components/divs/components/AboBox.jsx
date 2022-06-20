@@ -4,15 +4,13 @@ import DetailsButton from "modules/common/components/buttons/components/DetailsB
 
 import * as Styled from "./AboBox.styles"
 
-export default function AboBox({ SVG, text }) {
+export default function AboBox({ SVG, header, text }) {
   return (
     <Styled.StyledLink>
       <div>{<SVG />}</div>
+      <div>{header}</div>
       <div>{text}</div>
-      <div>{text}</div>
-      <div>{text}</div>
-      <div>{text}</div>
-      <DetailsButton text={"Mehr Details"} link={"/"} />
+      <DetailsButton text={"Kontakt"} link={"/"} />
     </Styled.StyledLink>
   )
 }

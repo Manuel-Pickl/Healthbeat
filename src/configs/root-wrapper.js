@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
  --clr-disabledText: #727272;
  --clr-text-clr: #000000; // primary company color
  --clr-success: #468f33;
+ --clr-difficulty: #00D060;
  --clr-error: #e2001a; // primary company color
 
  --ff-primary: "Segoe UI", sans-serif;

@@ -8,6 +8,7 @@ export const Content = styled.div`
   color: var(--clr-test);
   font-weight: bold;
   width: 100%;
+  height: 177px;
   text-align: left;
 
   h2 {
@@ -30,7 +31,7 @@ export const Container = styled.div`
     min-height: 150px;
     max-width: 150px;
     max-height: 150px;
-    margin-right: 8px;
+    margin-right: 48px;
   }
 
   ${props =>
@@ -38,6 +39,8 @@ export const Container = styled.div`
       ? css`
           svg {
             order: 1;
+            margin-left: 48px;
+            margin-right: 0px;
           }
         `
       : ""}
