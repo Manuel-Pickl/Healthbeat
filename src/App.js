@@ -33,6 +33,7 @@ function App() {
           const { availabilityView } = calendar[0]
 
           // create notifications
+          // ToDo Berkay: redirect to exercisePage
           notify(availabilityView, window.location.href)
         } catch (err) {
           app.displayError(err.message)
@@ -61,14 +62,14 @@ function App() {
 export default App
 
 // request permission on page load
-!!document &&
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!Notification) {
-      alert(
-        "Desktop notifications not available in your browser. Try Chromium."
-      )
-      return
-    }
+!!document 
+&& document.addEventListener("DOMContentLoaded", function () {
+  if (!Notification) {
+    alert(
+      "Desktop notifications not available in your browser. Try Chromium."
+    )
+    return;
+  }
 
-    if (Notification.permission !== "granted") Notification.requestPermission()
-  })
+  if (Notification.permission !== "granted") Notification.requestPermission()
+})

@@ -1,4 +1,5 @@
 import notificationLogo from "assets/notify.png"
+import storageTypes from "configs/storageTypes"
 /**
  * @param {String} url - current root url
  * @param {String} availableTime - in 5 minutes interval
@@ -78,18 +79,26 @@ export function extractFreeTimeslots(timeslots) {
  *
  */
 function createNotificationTimer(freeTime, url) {
-  // const time = [100000, 120000] -> setTimeout(löse Notification aus,100000)
-  // console.log(freeTime, url)
-  // TODO es soll ein timer aufgesetzt werden für die notifications in den freien zeiten - freeTime.map(...)
-  // const notification = new Notification("Zeit für etwas Sport", {
-  //   icon: notificationLogo,
-  //   body: "Du hast nun für 15 Minuten keine weiteren Termine. Wir haben 2 Übungen gegen Hüftbeschwerden für Dich vorbereitet.",
-  // })
-  // TODO jede notification hat eine query-string dynamisch erstellt abhängig vom profil für verschiedene Übungen
-  // TODO ?uebung=""
-  // TODO &dauer=""
-  // TODO &schwierigkeit=""
-  // notification.onclick = function () {
-  //   window.open("http://stackoverflow.com/a/13328397/1269037")
-  // }
+  // ToDo Berkay:
+  // - function wird mehrmals getriggert -> manchmal 3 Mal, manchmal öfter
+  // - url ist noch falsch -> an anderer Stelle auch kommentiert
+  // - was soll mit dem zweiten value in freeTime gemacht werden?
+
+  // get complain region
+  const complainSurvey = localStorage.getItem(storageTypes.complainSurvey);
+  let complainRegion = !!complainSurvey ? JSON.parse(complainSurvey)["region"] : null;
+
+  let regionExerciseMessage = complainRegion === null || complainRegion === "Keine Schmerzen"
+    ? "Wir haben Übungen für Dich vorbereitet."
+    : `Wir haben Übungen gegen ${complainRegion}-Beschwerden für Dich vorbereitet.`;
+
+  setTimeout(function() {
+    var notification = new Notification("Zeit für etwas Sport", {
+      icon: notificationLogo,
+      body: `Du hast nun für 15 Minuten keine weiteren Termine\n\n${regionExerciseMessage}`,
+    });
+    notification.onclick = function() {
+      window.open(url);
+    };
+  }, freeTime[0]);
 }
