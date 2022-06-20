@@ -13,6 +13,7 @@ export const Content = styled.div`
   h2 {
     margin: 0;
     margin-bottom: 8px;
+    text-align: left;
   }
 `
 

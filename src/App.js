@@ -6,9 +6,11 @@ import { getUserDayCalendar } from "utils/graph"
 import { notify } from "utils/notification"
 import { findIana } from "windows-iana"
 
+import ExerciseTimer from "modules/exerciseTimer"
 import Greeting from "modules/greeting/components"
 import Navigation from "modules/navigation/components/Navigation"
 import ComplainSurvey from "pages/complainSurvey/ComplainSurvey"
+import Exercise from "pages/exercise/Exercise"
 import LandingPage from "pages/landingPage/LandingPage"
 
 function App() {
@@ -47,13 +49,17 @@ function App() {
   return (
     <>
       <Navigation />
-
       <AuthenticatedTemplate>
         <Greeting />
       </AuthenticatedTemplate>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/"
+          element={app.user ? <ExerciseTimer /> : <LandingPage />}
+        />
         <Route path="/complain-survey" element={<ComplainSurvey />} />
+        <Route path="/exercise" element={<Exercise />} />
+        <Route path="/exercise-finished" element={<Exercise />} />
       </Routes>
     </>
   )
@@ -62,14 +68,14 @@ function App() {
 export default App
 
 // request permission on page load
-!!document 
-&& document.addEventListener("DOMContentLoaded", function () {
-  if (!Notification) {
-    alert(
-      "Desktop notifications not available in your browser. Try Chromium."
-    )
-    return;
-  }
+!!document &&
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!Notification) {
+      alert(
+        "Desktop notifications not available in your browser. Try Chromium."
+      )
+      return
+    }
 
-  if (Notification.permission !== "granted") Notification.requestPermission()
-})
+    if (Notification.permission !== "granted") Notification.requestPermission()
+  })

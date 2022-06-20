@@ -6,59 +6,67 @@ import { ReactComponent as LandingPic1 } from "assets/landingpage/landingPic1.sv
 import { ReactComponent as LandingPic2 } from "assets/landingpage/landingPic2.svg"
 import { ReactComponent as LandingPic3 } from "assets/landingpage/landingPic3.svg"
 
+import Button from "modules/common/components/buttons/components/Button"
 import AboBox from "modules/common/components/divs/components/AboBox"
-import ExerciseTimer from "modules/exerciseTimer"
 import HealthbeatDesc from "modules/healthbeat-desc/HealthbeatDesc"
-import Exercise from "pages/exercise/Exercise"
-import ExerciseFinished from "pages/exerciseFinished/ExerciseFinished"
 
 import * as Styled from "./LandingPage.styles"
-
-
-
-// ToDo Berkay: use actual logged in value
-const loggedIn = true;
-
 
 function LandingPage() {
   return (
     <>
-    {loggedIn ? (
-      // redirect not working for now -> just comment in the component you want to style ;)
-      <ExerciseTimer/>
-      // <Exercise/>
-      // <ExerciseFinished/>
-      ) : (
       <Styled.Main>
-        <h1>Was ist Healthbeat?</h1>
-        <Styled.Content>
-          <HealthbeatDesc
-            text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
-            header={"test"}
-            SVG={LandingPic1}
-          />
-          <div>
+        <article>
+          <h1>Was ist Healthbeat?</h1>
+          <Styled.Content>
             <HealthbeatDesc
               text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
               header={"test"}
-              SVG={LandingPic2}
+              SVG={LandingPic1}
             />
-            <HealthbeatDesc
-              text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
-              header={"test"}
-              SVG={LandingPic3}
-              right
+            <div>
+              <HealthbeatDesc
+                text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
+                header={"test"}
+                SVG={LandingPic2}
+              />
+              <HealthbeatDesc
+                text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
+                header={"test"}
+                SVG={LandingPic3}
+                right
+              />
+            </div>
+          </Styled.Content>
+        </article>
+        <section id="#kontakt">
+          <h2>Abos</h2>
+          <Styled.Abos>
+            <AboBox SVG={Bronze} text={"Feature"} />
+            <AboBox SVG={Silber} text={"Feature"} />
+            <AboBox SVG={Gold} text={"Feature"} />
+          </Styled.Abos>
+        </section>
+        <Styled.Kontakt>
+          <h2>Kontakt</h2>
+          <p>
+            Sie wollen einen Beratungstermin vereinbaren oder haben Fragen? Dann
+            nutzen Sie das folgende Kontaktformular. Wir antworten Ihnen
+            schnellstmöglich.
+          </p>
+          <form>
+            <label htmlFor="betreff">Betreff</label>
+            <input type="text" name="betreff" required />
+            <textarea
+              name="text"
+              type="text"
+              required
+              placeholder="Schreiben Sie Ihre Nachricht."
             />
-          </div>
-        </Styled.Content>
-        <h2>Abos</h2>
-        <Styled.Abos>
-          <AboBox SVG={Bronze} text={"Feature"} />
-          <AboBox SVG={Silber} text={"Feature"} />
-          <AboBox SVG={Gold} text={"Feature"} />
-        </Styled.Abos>
+            <Button type="submit" text={"Senden"} />
+          </form>
+        </Styled.Kontakt>
       </Styled.Main>
-    )}
     </>
   )
 }
