@@ -9,14 +9,12 @@ import { ReactComponent as LandingPic3 } from "assets/landingpage/landingPic3.sv
 import Button from "modules/common/components/buttons/components/Button"
 import AboBox from "modules/common/components/divs/components/AboBox"
 import HealthbeatDesc from "modules/healthbeat-desc/HealthbeatDesc"
-import Exercise from "pages/exercise/Exercise"
 
 import * as Styled from "./LandingPage.styles"
 
 function LandingPage() {
   return (
     <>
-      <Exercise />
       <Styled.Main>
         <article>
           <h1>Was ist Healthbeat?</h1>

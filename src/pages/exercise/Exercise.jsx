@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
+import { ReactComponent as StartVideo } from "assets/buttons/startvideo.svg"
 
+import NavigationButton from "modules/common/components/buttons/components/NavigationButton"
+//import NavigationButton from "modules/common/components/buttons/components/NavigationButton"
+//import { Timer } from "modules/common/countdowntimer/components/CountdownTimer.styles"
 import ExerciseInfo from "modules/exerciseInfo"
+
+//import * as Timer from "./CountdownTimer.styles"
+import * as Styled from "./Exercise.styles"
 
 const exercises = {
   1: [
@@ -76,36 +83,37 @@ export default function Exercise() {
 
   return (
     <>
-      <div>
-        {/* ToDo - it does work */}
+      {/* ToDo - it does work */}
+      <Styled.Main>
         <ExerciseInfo exercise={exercise} />
         {/* skip / play logic */}
         {!exerciseStarted ? (
           <div>
             <button
+              id="startvideo"
               onClick={() => {
                 toggleExercise(true)
                 toggleTimerRunning(true)
               }}
             >
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK1ZhFJeQdr9R_ALT-PgHyudfzcoVI5ByjBtCR2aVWxNTrzVejwou2WPyZM9FhuC1w3ik&usqp=CAU"
-                alt="play_button_image"
+              <StartVideo />
+            </button>
+            <div>
+              <NavigationButton
+                text={"Überspringen"}
+                link={"/"}
+                onClick={() => {
+                  if (skipReason === "") {
+                    toggleSkipButton(false)
+                    toggleSkipOptions(true)
+                  } else {
+                    setExercise(showNextExercise())
+                  }
+                }}
+                disabled={!skipButtonEnabled}
               />
-            </button>
-            <button
-              onClick={() => {
-                if (skipReason === "") {
-                  toggleSkipButton(false)
-                  toggleSkipOptions(true)
-                } else {
-                  setExercise(showNextExercise())
-                }
-              }}
-              disabled={!skipButtonEnabled}
-            >
-              Überspringen
-            </button>
+            </div>
+
             {skipOptionsVisible && (
               <ul>
                 {skipOptions.map(skipOption => (
@@ -133,9 +141,10 @@ export default function Exercise() {
             <button onClick={() => toggleTimerRunning(!timerRunning)}>
               {timerRunning ? "pause" : "play"}
             </button>
+            <div id="app"></div>
           </div>
         )}
-      </div>
+      </Styled.Main>
     </>
   )
 }

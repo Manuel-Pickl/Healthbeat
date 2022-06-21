@@ -1,6 +1,8 @@
 import React, { useState } from "react"
-
-import { Button } from "modules/common/components/buttons/components/Button.styles"
+import { ReactComponent as ArrowDown } from "assets/buttons/arrowdown.svg"
+import { ReactComponent as ArrowTop } from "assets/buttons/arrowtop.svg"
+import { ReactComponent as Sport } from "assets/buttons/sport.svg"
+import { ReactComponent as Watch } from "assets/buttons/watch.svg"
 
 import * as Styled from "./ExerciseInfo.styles"
 
@@ -19,36 +21,53 @@ export default function ExerciseInfo({ exercise }) {
         <h2>
           Übung: <span id="exName">{exerciseName}</span>
         </h2>
-        <video width="525" height="auto" controls autoPlay>
-          <source
-            src="https://s3.amazonaws.com/codecademy-content/courses/React/react_video-slow.mp4"
-            type="video/mp4"
-          />
-          <track
-            kind="captions"
-            src="https://gist.githubusercontent.com/samdutton/ca37f3adaf4e23679957b8083e061177/raw/e19399fbccbc069a2af4266e5120ae6bad62699a/sample.vtt"
-            srcLang="en"
-            label="English"
-          />
-          Your browser does not support the video tag.
-        </video>
-        <div>
-          Schwierigkeit: <span id="difficult">{difficulty}</span>
+        <div id="VideoBackground">
+          <video width="auto" height="360" controls autoPlay>
+            <source
+              src="https://s3.amazonaws.com/codecademy-content/courses/React/react_video-slow.mp4"
+              type="video/mp4"
+            />
+            <track
+              kind="captions"
+              src="https://gist.githubusercontent.com/samdutton/ca37f3adaf4e23679957b8083e061177/raw/e19399fbccbc069a2af4266e5120ae6bad62699a/sample.vtt"
+              srcLang="en"
+              label="English"
+            />
+            Your browser does not support the video tag.
+          </video>
         </div>
-        <div>Dauer: {parseDuration(duration)}</div>
 
-        {/* exercise description */}
-
-        <button onClick={() => toggleDescriptionVisiblity(!descriptionVisible)}>
-          Übungsbeschreibung
-          {descriptionVisible ? <div>close icon</div> : <div>open icon</div>}
-        </button>
-        {descriptionVisible && <div>{description}</div>}
+        <div className="grid-container">
+          <div>
+            <button
+              id="uebungsbesch"
+              onClick={() => toggleDescriptionVisiblity(!descriptionVisible)}
+            >
+              Übungsbeschreibung
+              {descriptionVisible ? (
+                <div>
+                  <ArrowTop className="arrow" />
+                </div>
+              ) : (
+                <div>
+                  <ArrowDown />
+                </div>
+              )}
+            </button>
+          </div>
+          <div>
+            <Sport />
+          </div>
+          <div>
+            Schwierigkeit: <span id="difficult">{difficulty}</span>
+          </div>
+          <div>
+            <Watch />
+          </div>
+          <div>Dauer: {parseDuration(duration)}</div>
+        </div>
+        <div>{descriptionVisible && <div id="desc">{description}</div>}</div>
       </Styled.Main>
-      <Button
-        onClick={() => toggleDescriptionVisiblity(!descriptionVisible)}
-        text={"Test"}
-      />
     </>
   )
 }

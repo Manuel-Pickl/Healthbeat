@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
  --clr-background: #FFF2E6;
  --clr-disabled: #DFDFDF;
  --clr-disabledText: #727272;
+ --clr-backgroundPic: #f4f4f4;
  --clr-text-clr: #000000; // primary company color
  --clr-success: #468f33;
  --clr-difficulty: #00D060;

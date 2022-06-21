@@ -11,6 +11,7 @@ import Greeting from "modules/greeting/components"
 import Navigation from "modules/navigation/components/Navigation"
 import ComplainSurvey from "pages/complainSurvey/ComplainSurvey"
 import Exercise from "pages/exercise/Exercise"
+import ExerciseFinished from "pages/exerciseFinished/ExerciseFinished"
 import LandingPage from "pages/landingPage/LandingPage"
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
         />
         <Route path="/complain-survey" element={<ComplainSurvey />} />
         <Route path="/exercise" element={<Exercise />} />
-        <Route path="/exercise-finished" element={<Exercise />} />
+        <Route path="/exercise-finished" element={<ExerciseFinished />} />
       </Routes>
     </>
   )
