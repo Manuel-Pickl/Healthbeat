@@ -1,8 +1,11 @@
 import React, { useState } from "react"
+import { ReactComponent as GreetingPic } from "assets/greeting/Bild.svg"
 import { useAppContext } from "configs/appContext"
 import storageTypes from "configs/storageTypes"
 
-import { Container, Content, Schließen } from "./Greeting.styles"
+import Button from "modules/common/components/buttons/components/Button"
+
+import { Container, Content } from "./Greeting.styles"
 
 export default function Greeting() {
   const app = useAppContext()
@@ -14,19 +17,19 @@ export default function Greeting() {
     if (hour > 5 && hour < 11) {
       return (
         <div>
-          Guten Morgen {app.user?.displayName}!<p>{rhetoQuest}</p>
+          Guten Morgen {app.user?.displayName}
         </div>
       )
     } else if (hour > 11 && hour < 18) {
       return (
         <div>
-          Guten Tag {app.user?.displayName}!<p>{rhetoQuest}</p>
+          Guten Tag {app.user?.displayName}
         </div>
       )
     } else {
       return (
         <div>
-          Guten Abend {app.user?.displayName}!<p>{rhetoQuest}</p>
+          Guten Abend {app.user?.displayName}
         </div>
       )
     }
@@ -48,16 +51,19 @@ export default function Greeting() {
       }}
     >
       <Content>
-        <div className="text">{greetings()}</div>
-        <Schließen
-          className="okay"
+        <h1>{greetings()}</h1>
+        <GreetingPic
+          id="GreetingPic" 
+        />
+        <h2>{rhetoQuest}</h2>
+        <Button 
+          id="ButtonId"
+          text={"Schließen"}
           onClick={() => {
             setShow(false)
             sessionStorage.setItem(storageTypes.greeted, "true")
           }}
-        >
-          schließen
-        </Schließen>
+          />
       </Content>
     </Container>
   )

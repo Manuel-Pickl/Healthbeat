@@ -6,6 +6,7 @@ export default function Button({
   SVG,
   text,
   onClick,
+  id,
   type,
   disabled,
   children,
@@ -13,6 +14,7 @@ export default function Button({
   return (
     <Styled.Button
       onClick={onClick}
+      id={id}
       type={type ? type : ""}
       disabled={disabled}
     >

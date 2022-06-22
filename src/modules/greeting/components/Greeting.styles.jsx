@@ -6,6 +6,13 @@ export const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  background: rgba(109, 109, 109, 0.75);
+
+  #ButtonId {
+    height: 50px;
+    width: 256px;
+  }
+  
   ${props =>
     props.show
       ? css`
@@ -19,15 +26,20 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  align-items:center;
+  width: 528px;
+  min-height: 512px;
   flex-direction: column;
   margin: auto;
-  padding: 1%;
-  border: 2px solid #e27832;
-  background-color: #dfdfdf;
-  border-radius: 10px;
-`
-export const Schließen = styled.button`
-  border: 2px solid #e27832;
-  border-radius: 10px;
-  color: #e27832;
+  background-color: var(--clr-white);
+  border-radius: 5px;
+
+  #GreetingPic {
+    height: 292px;
+    width: 528px;
+  }
+
+  & h1 {
+    color: var(--clr-primary);
+  }
 `
