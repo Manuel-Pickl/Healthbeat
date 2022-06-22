@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const Abos = styled.div`
   display: grid;
   align-items: center;
+  justify-content: center;
   grid-template-columns: auto auto auto; /* drei Spalten */
   grid-gap: 0px 48px; /* Zeilenabstand Spaltenabstand */
 

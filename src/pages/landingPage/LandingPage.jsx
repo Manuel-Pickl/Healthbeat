@@ -6,7 +6,7 @@ import { ReactComponent as LandingPic1 } from "assets/landingpage/landingPic1.sv
 import { ReactComponent as LandingPic2 } from "assets/landingpage/landingPic2.svg"
 import { ReactComponent as LandingPic3 } from "assets/landingpage/landingPic3.svg"
 
-import AboBox from "modules/common/components/divs/components/AboBox"
+import AboBox from "modules/abobox/components/AboBox"
 import Contact from "modules/contact/components/Contact"
 import HealthbeatDesc from "modules/healthbeat-desc/HealthbeatDesc"
 
@@ -49,7 +49,9 @@ function LandingPage() {
             </Styled.Abos>
           </section>
         </article>
-        <Contact />
+        <div id="contact">
+          <Contact />
+        </div>
       </Styled.Main>
     </>
   )

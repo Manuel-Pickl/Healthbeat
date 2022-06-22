@@ -6,11 +6,17 @@ import * as Styled from "./AboBox.styles"
 
 export default function AboBox({ SVG, header, text }) {
   return (
-    <Styled.StyledLink>
+    <Styled.Container>
       <div>{<SVG />}</div>
       <div>{header}</div>
-      <div>{text}</div>
-      <DetailsButton text={"Kontakt"} link={"/"} />
-    </Styled.StyledLink>
+      <ul>
+        <li>{text}</li>
+        <li>{text}</li>
+        <li>{text}</li>
+        <li>{text}</li>
+        <li>{text}</li>
+      </ul>
+      <DetailsButton text={"Kontakt"} link={"#contact"} />
+    </Styled.Container>
   )
 }
