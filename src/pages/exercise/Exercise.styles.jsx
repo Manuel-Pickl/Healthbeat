@@ -34,34 +34,6 @@ export const Main = styled.main`
     color: var(--clr-difficulty);
   }
 
-  #skipbutton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border: 2px solid var(--clr-primary);
-    border-radius: 5px;
-    color: var(--clr-primary);
-    background: white;
-    font-weight: bold;
-    min-width: 120px;
-    height: 48px;
-    padding: 0 8px;
-    cursor: pointer;
-    text-decoration: none;
-
-    &:disabled {
-      border: none;
-      color: var(--clr-disabledText);
-      background: var(--clr-disabled);
-      cursor: auto;
-    }
-  }
-
-  ul {
-    text-align: left;
-  }
-
   #uebungsbesch {
     display: inline-flex;
     align-items: center;

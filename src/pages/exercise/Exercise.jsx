@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import { ReactComponent as StartVideo } from "assets/buttons/startvideo.svg"
 
+import NavigationButton from "modules/common/components/buttons/components/NavigationButton"
 //import NavigationButton from "modules/common/components/buttons/components/NavigationButton"
 //import { Timer } from "modules/common/countdowntimer/components/CountdownTimer.styles"
 import ExerciseInfo from "modules/exerciseInfo"
@@ -97,10 +98,9 @@ export default function Exercise() {
             >
               <StartVideo />
             </button>
-
             <div>
-              <button
-                id="skipbutton"
+              <NavigationButton
+                text={"Überspringen"}
                 link={"/"}
                 onClick={() => {
                   if (skipReason === "") {
@@ -111,9 +111,7 @@ export default function Exercise() {
                   }
                 }}
                 disabled={!skipButtonEnabled}
-              >
-                Überspringen
-              </button>
+              />
             </div>
 
             {skipOptionsVisible && (
@@ -143,6 +141,7 @@ export default function Exercise() {
             <button onClick={() => toggleTimerRunning(!timerRunning)}>
               {timerRunning ? "pause" : "play"}
             </button>
+            <div id="app"></div>
           </div>
         )}
       </Styled.Main>
