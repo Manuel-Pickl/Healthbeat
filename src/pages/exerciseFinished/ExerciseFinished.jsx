@@ -1,6 +1,12 @@
 import React from "react"
 import { useNavigate } from "react-router"
+import { ReactComponent as ThumbsUp } from "assets/buttons/thumbs-up.svg"
 import storageTypes from "configs/storageTypes"
+
+import Button from "modules/common/components/buttons/components/Button"
+import NavigationButton from "modules/common/components/buttons/components/NavigationButton"
+
+import * as Styled from "./ExerciseFinished.styles"
 
 export default function Exercise() {
   const navigate = useNavigate()
@@ -17,16 +23,26 @@ export default function Exercise() {
 
   return (
     <>
-      <div>
-        <h2>Sehr gut!</h2>
-        <p>
-          Du hast heute {totalExerciseDuration} Minuten gegen deine{" "}
-          {complainRegion} gearbeitet.
-        </p>
-        <p>{tip}</p>
-        <button onClick={() => navigate("/")}>Abschließen</button>
-        <button onClick={() => navigate("/kontakt")}>Kontakt</button>
-      </div>
+      <Styled.Main>
+        <div className="grid-container">
+          <div>
+            <ThumbsUp />
+          </div>
+
+          <div>
+            <h2>Sehr gut!</h2>
+            <p>
+              Du hast heute {totalExerciseDuration} Minuten gegen deine{" "}
+              {complainRegion} gearbeitet.
+            </p>
+            <p>{tip}</p>
+            <div id="finish">
+              <Button onClick={() => navigate("/")} text={"Abschließen"} />
+              {/*<NavigationButton text={"Kontakt"} link={"/kontakt"} />*/}
+            </div>
+          </div>
+        </div>
+      </Styled.Main>
     </>
   )
 }

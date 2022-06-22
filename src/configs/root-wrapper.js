@@ -2,6 +2,10 @@ const { createGlobalStyle } = require("styled-components")
 
 export const GlobalStyle = createGlobalStyle`
 :root{
+*,body, html {
+  font-family: Verdana, "Lucida Sans Unicode", sans-serif;
+}
+
  --clr-white: #F4EEFC;
  --clr-primary: #EE7203; // primary company color
  --clr-hover: #FF9F49;
