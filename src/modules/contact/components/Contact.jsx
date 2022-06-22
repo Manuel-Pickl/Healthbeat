@@ -14,7 +14,7 @@ export default function Contact() {
         schnellstmöglich.
       </p>
       <form>
-        <label htmlfor="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input type="email" name="email" required />
         <label htmlFor="betreff">Betreff</label>
         <input type="text" name="betreff" required />

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const Button = styled.button`
   display: inline-flex;
@@ -28,4 +28,13 @@ export const Button = styled.button`
       fill: white;
     }
   }
+
+  ${props =>
+    props.disabled
+      ? css`
+          background: var(--clr-disabled);
+          color: var(--clr-disabledText);
+          pointer-events: none;
+        `
+      : ""}
 `

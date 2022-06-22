@@ -1,17 +1,12 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router"
 import { ReactComponent as Complain } from "assets/complainpage/complain.svg"
-import { ReactComponent as Pain } from "assets/complainpage/pain.svg"
+import Pain from "assets/complainpage/pain.png"
 import storageTypes from "configs/storageTypes"
 
-import DetailsButton from "modules/common/components/buttons/components/DetailsButton"
+import Button from "modules/common/components/buttons/components/Button"
 
-import {
-  GridContainer,
-  NewInput,
-  SurveyHeader,
-  SVGContainer
-} from "./ComplainSurvey.styles"
+import * as Styled from "./ComplainSurvey.styles"
 
 const regions = ["Rücken", "Nacken", "Schulter", "Hüfte", "Keine Schmerzen"]
 const complaintDegree = {
@@ -29,7 +24,7 @@ const complaintDegree = {
 
 export default function ComplainSurvey() {
   const [visbility, toggleVisiblity] = useState(false)
-  const [rangeVal, setRangeVal] = useState(1)
+  const [painValue, setPainValue] = useState(null)
   const [disabled, setButton] = useState(true)
   const [currentRegion, setRegion] = useState("")
   const navigate = useNavigate()
@@ -44,7 +39,7 @@ export default function ComplainSurvey() {
       storageTypes.complainSurvey,
       JSON.stringify({
         region: currentRegion,
-        scaleOfPain: rangeVal,
+        scaleOfPain: painValue,
         nextSurveyDate: date,
       })
     )
@@ -53,73 +48,88 @@ export default function ComplainSurvey() {
   return (
     <>
       {!visbility ? (
-        <GridContainer>
-          <SurveyHeader>
+        <Styled.Container>
+          <Styled.Content>
             <h1>Beschwerdeabfrage</h1>
-            <SVGContainer><Complain/></SVGContainer>
+            <Styled.SVGContainer>
+              <Complain />
+            </Styled.SVGContainer>
             <h1>Wo hast du heute Beschwerden?</h1>
-          </SurveyHeader>
+          </Styled.Content>
           <ul>
             {regions.map(region => (
               <li key={region}>
-                <NewInput
-                  type="radio"
-                  value={region}
-                  name="pain"
-                  defaultChecked={currentRegion.localeCompare(region) === 0}
-                  onClick={() => {
-                    setButton(false)
-                    setRegion(region)
-                  }}
-                />
-                {region}
+                <label>
+                  <Styled.Input
+                    type="radio"
+                    value={region}
+                    name="pain"
+                    defaultChecked={currentRegion.localeCompare(region) === 0}
+                    onClick={() => {
+                      setButton(false)
+                      setRegion(region)
+                    }}
+                  />
+                  {region}
+                </label>
               </li>
             ))}
           </ul>
-          <SurveyHeader>
-            <button
-              onClick={() => toggleVisiblity(true)}
-              disabled={!currentRegion.length > 0 || disabled}
-            >
-              Weiter
-            </button>
-          </SurveyHeader>
-        </GridContainer>
+          <Button
+            onClick={() => toggleVisiblity(true)}
+            disabled={!currentRegion.length > 0 || disabled}
+            text={"weiter"}
+          />
+        </Styled.Container>
       ) : (
-        <GridContainer>
-          <SurveyHeader>
+        <Styled.Container>
+          <Styled.Content>
             <h1>Beschwerdeabfrage</h1>
-            <SVGContainer><Pain/></SVGContainer>
+            <Styled.SVGContainer>
+              <img src={Pain} alt="" />
+            </Styled.SVGContainer>
             <h1>Wie stark sind deine Schmerzen?</h1>
-            <input
-              type="range"
-              className="custom-range"
-              min="1"
-              max="10"
-              step="1"
-              defaultValue={1}
-              onChange={event => setRangeVal(event.target.value)}
-            />
-            <p>
-              Dein Schmerzgrad liegt bei:{" "}
-              <b>{rangeVal + " - " + complaintDegree[rangeVal]}</b>
-            </p>
-
-            <DetailsButton text={"Zurück"} link={"/"}
-              onClick={() => {
-                toggleVisiblity(false)
-                if (currentRegion.length === 0) setButton(true)
-                else setButton(false)
-              }}
-            />
-            <DetailsButton text={"Speichern"} link={"/"}
-              onClick={() => {
-                saveSurvey()
-                navigate("/")
-              }}
-            />
-          </SurveyHeader>
-        </GridContainer>
+            <ul>
+              {Object.keys(complaintDegree).map((key, i) =>
+                i % 2 !== 0 ? (
+                  <li key={complaintDegree[key]}>
+                    <label>
+                      <Styled.Input
+                        type="radio"
+                        value={painValue}
+                        name="pain-range"
+                        onClick={() => setPainValue(key)}
+                      />
+                      {i + " - " + complaintDegree[key]}
+                    </label>
+                  </li>
+                ) : null
+              )}
+            </ul>
+            <Styled.ButtonContainer>
+              <Button
+                link={"/"}
+                onClick={() => {
+                  toggleVisiblity(false)
+                  if (currentRegion.length === 0) setButton(true)
+                  else setButton(false)
+                  setPainValue(null)
+                }}
+              >
+                <i />
+              </Button>
+              <Button
+                text={"Speichern"}
+                link={"/"}
+                onClick={() => {
+                  saveSurvey()
+                  navigate("/")
+                }}
+                disabled={!!!painValue}
+              />
+            </Styled.ButtonContainer>
+          </Styled.Content>
+        </Styled.Container>
       )}
     </>
   )
