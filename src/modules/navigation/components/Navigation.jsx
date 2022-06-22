@@ -20,7 +20,7 @@ function Navigation() {
 
   return (
     <Nav>
-      <SVGContainer>
+      <SVGContainer to={"/"}>
         <Heart />
       </SVGContainer>
       <ul>

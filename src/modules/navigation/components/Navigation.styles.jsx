@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export const SVGContainer = styled.div`
+export const SVGContainer = styled(Link)`
   width: 50px;
   height: 50px;
 

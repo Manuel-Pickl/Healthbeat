@@ -10,6 +10,7 @@ import ExerciseTimer from "modules/exerciseTimer"
 import Greeting from "modules/greeting/components"
 import Navigation from "modules/navigation/components/Navigation"
 import ComplainSurvey from "pages/complainSurvey/ComplainSurvey"
+import Contact from "pages/contact/Contact"
 import Exercise from "pages/exercise/Exercise"
 import ExerciseFinished from "pages/exerciseFinished/ExerciseFinished"
 import LandingPage from "pages/landingPage/LandingPage"
@@ -59,6 +60,7 @@ function App() {
           element={app.user ? <ExerciseTimer /> : <LandingPage />}
         />
         <Route path="/complain-survey" element={<ComplainSurvey />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/exercise" element={<Exercise />} />
         <Route path="/exercise-finished" element={<ExerciseFinished />} />
       </Routes>
