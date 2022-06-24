@@ -7,7 +7,7 @@ export const Content = styled.div`
   padding: 16px;
   color: var(--clr-test);
   font-weight: bold;
-  width: 100%;
+  width: 403px;
   height: 177px;
   text-align: left;
 
@@ -22,7 +22,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
 
   & svg {
     width: 100%;

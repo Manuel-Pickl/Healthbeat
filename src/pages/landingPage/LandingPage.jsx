@@ -11,6 +11,8 @@ import Contact from "modules/contact/components/Contact"
 import HealthbeatDesc from "modules/healthbeat-desc/HealthbeatDesc"
 
 import * as Styled from "./LandingPage.styles"
+const advFir = "Fitte Mitarbeiter leisten mehr"
+const advApp = "Unsere Fitness-Anwendung bringt Bewegung ins Büro & Homeoffice"
 
 function LandingPage() {
   return (
@@ -26,15 +28,13 @@ function LandingPage() {
             />
             <div>
               <HealthbeatDesc
-                text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
-                header={"Gemeinsam als Firma Sport machen"}
+                text={advFir}
+                header={"Firmenfitness und Gesundheitsförderung im Unternehmen"}
                 SVG={LandingPic2}
               />
               <HealthbeatDesc
-                text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint  commodi repudiandae consequuntur voluptatum laborum.`}
-                header={
-                  "Große Problem der Büroarbeit - unsere App regt zum Sport an"
-                }
+                text={advApp}
+                header={"Wir sorgen für mehr Bewegung"}
                 SVG={LandingPic3}
                 right
               />

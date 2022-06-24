@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import { ReactComponent as StartVideo } from "assets/buttons/startvideo.svg"
 
-//import NavigationButton from "modules/common/components/buttons/components/NavigationButton"
-//import { Timer } from "modules/common/countdowntimer/components/CountdownTimer.styles"
 import ExerciseInfo from "modules/exerciseInfo"
+import ExerciseTimer from "modules/exerciseTimer"
 
-//import * as Timer from "./CountdownTimer.styles"
 import * as Styled from "./Exercise.styles"
 
 const exercises = {
@@ -141,6 +139,7 @@ export default function Exercise() {
               <div>{parseDuration(remainingTime)}</div>
             </div>
             <button onClick={() => toggleTimerRunning(!timerRunning)}>
+              <ExerciseTimer />
               {timerRunning ? "pause" : "play"}
             </button>
           </div>

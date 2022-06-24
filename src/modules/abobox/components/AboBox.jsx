@@ -13,8 +13,6 @@ export default function AboBox({ SVG, header, text }) {
         <li>{text}</li>
         <li>{text}</li>
         <li>{text}</li>
-        <li>{text}</li>
-        <li>{text}</li>
       </ul>
       <DetailsButton text={"Kontakt"} link={"#contact"} />
     </Styled.Container>

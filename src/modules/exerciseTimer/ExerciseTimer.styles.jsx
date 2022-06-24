@@ -12,7 +12,7 @@ export const TimerContainer = styled.div`
 
   .base-timer__path-elapsed {
     stroke-width: 7px;
-    stroke: grey;
+    stroke: var(--clr-disabled);
   }
 
   .base-timer__label {
@@ -32,7 +32,7 @@ export const TimerContainer = styled.div`
     transform: rotate(90deg);
     transform-origin: center;
     transition: 1s linear all;
-    stroke: green;
+    stroke: var(--clr-primary);
   }
 
   .base-timer__svg {
