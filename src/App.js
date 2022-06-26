@@ -6,13 +6,13 @@ import { getUserDayCalendar } from "utils/graph"
 import { notify } from "utils/notification"
 import { findIana } from "windows-iana"
 
-import ExerciseTimer from "modules/exerciseTimer"
 import Greeting from "modules/greeting/components"
 import Navigation from "modules/navigation/components/Navigation"
 import ComplainSurvey from "pages/complainSurvey/ComplainSurvey"
 import Contact from "pages/contact/Contact"
 import Exercise from "pages/exercise/Exercise"
 import ExerciseFinished from "pages/exerciseFinished/ExerciseFinished"
+import ExerciseTimer from "pages/exerciseTimer/ExerciseTimer"
 import LandingPage from "pages/landingPage/LandingPage"
 
 function App() {

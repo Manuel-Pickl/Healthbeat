@@ -41,3 +41,13 @@ export const parseMS = ms => {
 
   return newMS
 }
+
+// returns formated string time MM:SS
+export const parseTime = ms => {
+  const minutes = Math.floor(ms / 1000 / 60)
+  const seconds = Math.floor((ms / 1000) % 60)
+  const sec = seconds < 10 ? "0" + seconds : seconds
+  const min = minutes < 10 ? "0" + minutes : minutes
+
+  return min + ":" + sec
+}
