@@ -7,12 +7,13 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   background: rgba(109, 109, 109, 0.75);
+  z-index: 1;
 
-  #ButtonId {
+  button {
     height: 50px;
     width: 256px;
   }
-  
+
   ${props =>
     props.show
       ? css`
@@ -26,20 +27,24 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  align-items:center;
+  align-items: center;
   width: 528px;
   min-height: 512px;
   flex-direction: column;
   margin: auto;
   background-color: var(--clr-white);
   border-radius: 5px;
+  padding: var(--gap-16);
 
-  #GreetingPic {
-    height: 292px;
-    width: 528px;
+  svg {
+    height: 100%;
+    width: 100%;
+    max-height: 292px;
+    max-width: 528px;
   }
 
   & h1 {
     color: var(--clr-primary);
+    text-align: center;
   }
 `

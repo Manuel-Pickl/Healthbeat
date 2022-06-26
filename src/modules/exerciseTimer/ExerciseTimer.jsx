@@ -31,16 +31,21 @@ export default function ExerciseTimer() {
         <div>Nächste Übung</div>
         <Styled.TimerContainer d={(ms / findTimerData()) * 283}>
           <svg
-            class="base-timer__svg"
+            className="base-timer__svg"
             viewBox="0 0 100 100"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g class="base-timer__circle">
-              <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45" />
+            <g className="base-timer__circle">
+              <circle
+                className="base-timer__path-elapsed"
+                cx="50"
+                cy="50"
+                r="45"
+              />
               <path
                 id="base-timer-path-remaining"
-                stroke-dasharray="283"
-                class="base-timer__path-remaining"
+                strokeDasharray="283"
+                className="base-timer__path-remaining"
                 d="
           M 50, 50
           m -45, 0
@@ -50,7 +55,7 @@ export default function ExerciseTimer() {
               />
             </g>
           </svg>
-          <span id="base-timer-label" class="base-timer__label">
+          <span id="base-timer-label" className="base-timer__label">
             {time}
           </span>
         </Styled.TimerContainer>

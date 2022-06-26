@@ -15,23 +15,11 @@ export default function Greeting() {
   // Zeitabfrage, um die drei unterschiedlichen Begrüßungsformen zu erhalten
   const greetings = (hour = new Date().getHours()) => {
     if (hour > 5 && hour < 11) {
-      return (
-        <div>
-          Guten Morgen {app.user?.displayName}
-        </div>
-      )
+      return <div>Guten Morgen {app.user?.displayName}</div>
     } else if (hour > 11 && hour < 18) {
-      return (
-        <div>
-          Guten Tag {app.user?.displayName}
-        </div>
-      )
+      return <div>Guten Tag {app.user?.displayName}</div>
     } else {
-      return (
-        <div>
-          Guten Abend {app.user?.displayName}
-        </div>
-      )
+      return <div>Guten Abend {app.user?.displayName}</div>
     }
   }
 
@@ -52,18 +40,15 @@ export default function Greeting() {
     >
       <Content>
         <h1>{greetings()}</h1>
-        <GreetingPic
-          id="GreetingPic" 
-        />
+        <GreetingPic />
         <h2>{rhetoQuest}</h2>
-        <Button 
-          id="ButtonId"
+        <Button
           text={"Schließen"}
           onClick={() => {
             setShow(false)
             sessionStorage.setItem(storageTypes.greeted, "true")
           }}
-          />
+        />
       </Content>
     </Container>
   )
