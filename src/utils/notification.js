@@ -81,7 +81,6 @@ export function extractFreeTimeslots(timeslots) {
  */
 function createNotificationTimer(freeTime, url) {
   // ToDo:
-  // - function wird mehrmals getriggert -> manchmal 3 Mal, manchmal öfter - wird getriggert wegen useEffect in App.js
   // - url ist noch falsch -> an anderer Stelle auch kommentiert - verstehe ich nicht
   // - was soll mit dem zweiten value in freeTime gemacht werden? - map und mit setTimeout kombinieren
 
