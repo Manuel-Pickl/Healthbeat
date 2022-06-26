@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
+import { StyledLink } from "modules/common/components/buttons/components/NavigationButton.styles"
+
 export const SVGContainer = styled(Link)`
   width: 50px;
   height: 50px;
@@ -25,6 +27,12 @@ export const Nav = styled.nav`
 
     li {
       margin-right: 8px;
+
+      a {
+        ${StyledLink.componentStyle.rules[0]}
+        background: transparent;
+        width: unset;
+      }
 
       &:last-child {
         margin-right: 0;

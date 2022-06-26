@@ -27,5 +27,3 @@ export const StyledLink = styled(Link)`
     background: var(--clr-click);
   }
 `
-
-

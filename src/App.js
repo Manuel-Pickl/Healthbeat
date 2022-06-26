@@ -37,7 +37,6 @@ function App() {
           const { availabilityView } = calendar[0]
 
           // create notifications
-          // ToDo Berkay: redirect to exercisePage
           notify(availabilityView, window.location.href)
         } catch (err) {
           app.displayError(err.message)

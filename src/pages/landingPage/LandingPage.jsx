@@ -40,7 +40,7 @@ function LandingPage() {
               />
             </div>
           </Styled.Content>
-          <section>
+          <section id="member">
             <h2>Abos</h2>
             <Styled.Abos>
               <AboBox SVG={Bronze} header={"Bronze"} text={"Feature"} />
