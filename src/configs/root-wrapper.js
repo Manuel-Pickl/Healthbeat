@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
  --clr-success: #468f33;
  --clr-difficulty: #00D060;
  --clr-error: #e2001a; // primary company color
+ --clr-popup: #FFF4F2;
 
  --ff-primary: "Segoe UI", sans-serif;
 

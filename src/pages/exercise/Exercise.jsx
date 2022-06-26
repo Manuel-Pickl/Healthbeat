@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import { ReactComponent as StartVideo } from "assets/buttons/startvideo.svg"
 
 import ExerciseInfo from "modules/exerciseInfo"
-import ExerciseTimer from "modules/exerciseTimer"
+import SkipPopup from "modules/skip-popup/SkipPopup"
+import ExerciseTimer from "modules/timer"
 
 import * as Styled from "./Exercise.styles"
 
@@ -40,21 +41,16 @@ const exercises = {
   ],
 }
 
-const skipOptions = [
-  "Die Übung wirkt zu anspruchsvoll",
-  "Die Übung wirkt zu leicht",
-  "Ich habe keine Lust auf diese Übung",
-  "Übungsutensilien sind nicht verfügbar",
-]
-
 export default function Exercise() {
   const navigate = useNavigate()
+  const buttonRef = useRef()
 
   const [exerciseStarted, toggleExercise] = useState(false)
   const [skipButtonEnabled, toggleSkipButton] = useState(true)
   const [timerRunning, toggleTimerRunning] = useState(false)
   const [skipOptionsVisible, toggleSkipOptions] = useState(false)
-  const [skipReason, setSkipReason] = useState("")
+  const [reason, setReason] = useState("")
+  const [difficulty, setDifficulty] = useState("")
   const [exercise, setExercise] = useState(showNextExercise())
 
   // timer
@@ -72,6 +68,8 @@ export default function Exercise() {
         navigate("/exercise-finished")
       }
     }, 1000)
+
+    console.log(reason, difficulty)
 
     return () => {
       clearInterval(timerInterval)
@@ -97,11 +95,19 @@ export default function Exercise() {
             </button>
 
             <div>
+              {skipOptionsVisible && (
+                <SkipPopup
+                  setDifficulty={setDifficulty}
+                  setReason={setReason}
+                  toggleSkipButton={bool => toggleSkipButton(bool)}
+                  forwardedRef={buttonRef}
+                />
+              )}
               <button
                 id="skipbutton"
                 link={"/"}
                 onClick={() => {
-                  if (skipReason === "") {
+                  if (reason === "" || difficulty === "") {
                     toggleSkipButton(false)
                     toggleSkipOptions(true)
                   } else {
@@ -109,29 +115,11 @@ export default function Exercise() {
                   }
                 }}
                 disabled={!skipButtonEnabled}
+                ref={buttonRef}
               >
                 Überspringen
               </button>
             </div>
-
-            {skipOptionsVisible && (
-              <ul>
-                {skipOptions.map(skipOption => (
-                  <li key={skipOption}>
-                    <input
-                      type="radio"
-                      value={skipOption}
-                      name="skipOption"
-                      onClick={() => {
-                        toggleSkipButton(true)
-                        setSkipReason(skipOption)
-                      }}
-                    />
-                    {skipOption}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
         ) : (
           <div>
