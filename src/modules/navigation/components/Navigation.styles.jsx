@@ -18,6 +18,8 @@ export const Nav = styled.nav`
   align-items: center;
   padding: 5px;
   box-shadow: 0px 20px 20px -13px rgba(0, 0, 0, 0.06);
+  z-index: 1;
+  background: white;
 
   ul {
     display: flex;

@@ -7,7 +7,7 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   background: rgba(109, 109, 109, 0.75);
-  z-index: 1;
+  z-index: 999;
 
   button {
     height: 50px;

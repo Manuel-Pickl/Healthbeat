@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { ReactComponent as Hantel } from "assets/exercisetimer/hantel.svg"
+import { ReactComponent as Start } from "assets/exercisetimer/start.svg"
 import { findTimerData, parseMS } from "utils/timer"
+
+import Button from "modules/common/components/buttons/components/Button"
 
 import * as Styled from "./ExerciseTimer.styles"
 
@@ -26,9 +30,8 @@ export default function ExerciseTimer() {
   const navigate = useNavigate()
 
   return (
-    <>
+    <Styled.Main>
       <div>
-        <div>Nächste Übung</div>
         <Styled.TimerContainer d={(ms / findTimerData()) * 283}>
           <svg
             className="base-timer__svg"
@@ -55,14 +58,18 @@ export default function ExerciseTimer() {
               />
             </g>
           </svg>
-          <span id="base-timer-label" className="base-timer__label">
-            {time}
-          </span>
+          <p>
+            <span>
+              <Hantel /> Nächste Übung
+            </span>
+            <span>{time}</span>
+          </p>
         </Styled.TimerContainer>
       </div>
-      <button onClick={() => navigate("/exercise")}>
+      <Button onClick={() => navigate("/exercise")}>
         Übungseinheit starten
-      </button>
-    </>
+        <Start />
+      </Button>
+    </Styled.Main>
   )
 }

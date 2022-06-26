@@ -42,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
 
  // query width's
  --desktop-max-width: 1512px;
- --desktop-max-width: 1512px;
+ --desktop-min-width: 835px;
 
  --tablet-max-width: 834px;
  --tablet-min-width: 641px;
@@ -80,6 +80,7 @@ Global Styles
  html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+
 }
 
 /* Sections
@@ -91,6 +92,7 @@ Global Styles
 
 body {
   margin: 0;
+
 }
 
 /**
