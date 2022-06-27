@@ -2,7 +2,12 @@ import { ReactComponent as Hantel } from "assets/exercisetimer/hantel.svg"
 
 import * as Styled from "./Timer.styles"
 
-export default function ExerciseTimer({ timeLeft = 1, currentTime = 0, time }) {
+export default function ExerciseTimer({
+  timeLeft = 1,
+  currentTime = 0,
+  time,
+  textVisible = true,
+}) {
   return (
     <Styled.TimerContainer d={(currentTime / timeLeft) * 283}>
       <svg
@@ -26,9 +31,11 @@ export default function ExerciseTimer({ timeLeft = 1, currentTime = 0, time }) {
         </g>
       </svg>
       <p>
-        <span>
-          <Hantel /> Nächste Übung
-        </span>
+        {textVisible && (
+          <span>
+            <Hantel /> Nächste Übung
+          </span>
+        )}
         <span>{time}</span>
       </p>
     </Styled.TimerContainer>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import { ReactComponent as StartVideo } from "assets/buttons/startvideo.svg"
+import { parseTime } from "utils/timer"
 
 import ExerciseInfo from "modules/exerciseInfo"
 import SkipPopup from "modules/skip-popup/SkipPopup"
@@ -79,7 +80,7 @@ export default function Exercise() {
   return (
     <>
       {/* ToDo - it does work */}
-      <Styled.Main>
+      <Styled.Main skipOptionsVisible={skipOptionsVisible}>
         <ExerciseInfo exercise={exercise} />
         {/* skip / play logic */}
         {!exerciseStarted ? (
@@ -94,14 +95,17 @@ export default function Exercise() {
               <StartVideo />
             </button>
 
-            <div>
+            <Styled.PopupContainer>
               {skipOptionsVisible && (
-                <SkipPopup
-                  setDifficulty={setDifficulty}
-                  setReason={setReason}
-                  toggleSkipButton={bool => toggleSkipButton(bool)}
-                  forwardedRef={buttonRef}
-                />
+                <>
+                  <Styled.Background />
+                  <SkipPopup
+                    setDifficulty={setDifficulty}
+                    setReason={setReason}
+                    toggleSkipButton={bool => toggleSkipButton(bool)}
+                    forwardedRef={buttonRef}
+                  />
+                </>
               )}
               <button
                 id="skipbutton"
@@ -111,6 +115,9 @@ export default function Exercise() {
                     toggleSkipButton(false)
                     toggleSkipOptions(true)
                   } else {
+                    toggleSkipOptions(false)
+                    setReason("")
+                    setDifficulty("")
                     setExercise(showNextExercise())
                   }
                 }}
@@ -119,17 +126,20 @@ export default function Exercise() {
               >
                 Überspringen
               </button>
-            </div>
+            </Styled.PopupContainer>
           </div>
         ) : (
           <div>
-            <div>
-              <div>{parseDuration(remainingTime)}</div>
-            </div>
-            <button onClick={() => toggleTimerRunning(!timerRunning)}>
-              <ExerciseTimer />
-              {timerRunning ? "pause" : "play"}
-            </button>
+            <Styled.TimerButton
+              onClick={() => toggleTimerRunning(!timerRunning)}
+            >
+              <ExerciseTimer
+                time={parseTime(remainingTime * 1000)}
+                timeLeft={15 * 60000}
+                currentTime={remainingTime * 1000}
+                textVisible={false}
+              />
+            </Styled.TimerButton>
           </div>
         )}
       </Styled.Main>

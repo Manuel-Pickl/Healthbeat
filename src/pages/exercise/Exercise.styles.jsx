@@ -1,14 +1,14 @@
 import styled from "styled-components"
 
 export const Main = styled.main`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-left: 104px;
-  margin-right: 104px;
-  margin-bottom: 64px;
+  margin-bottom: var(--gap-64);
+  width: 100%;
 
   & h1 {
     text-align: center;
@@ -87,4 +87,35 @@ export const Main = styled.main`
   & section {
     margin-bottom: var(--gap-32);
   }
+`
+
+export const Background = styled.div`
+  position: absolute;
+  width: 100%;
+  height: calc(100% + 64px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+`
+
+export const PopupContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  ${Background} {
+    z-index: 0;
+  }
+
+  & > * {
+    z-index: 1;
+  }
+`
+
+export const TimerButton = styled.button`
+  div {
+    z-index: 0;
+  }
+  background: none;
+  border: none;
 `

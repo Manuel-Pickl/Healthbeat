@@ -26,7 +26,7 @@ export default function ExerciseTimer() {
     setTime(parseTime(ms))
 
     // calculate timeleft
-    const idx = data.indexOf(ms)
+    const idx = data.indexOf(timerData)
 
     // TODO remove test data and check for -1
     // -1 only for test data
