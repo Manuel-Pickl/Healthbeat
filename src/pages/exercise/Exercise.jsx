@@ -148,13 +148,13 @@ export default function Exercise() {
 }
 
 // ToDo: move to utility class
-function parseDuration(duration) {
-  // duration in seconds
-  let minutes = Math.floor(duration / 60)
-  let seconds = duration % 60
+// function parseDuration(duration) {
+//   // duration in seconds
+//   let minutes = Math.floor(duration / 60)
+//   let seconds = duration % 60
 
-  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
-}
+//   return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+// }
 
 // ToDo: move to utility class
 function randomIntFromInterval(min, max) {

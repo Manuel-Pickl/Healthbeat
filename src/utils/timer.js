@@ -2,6 +2,7 @@ import storageTypes from "configs/storageTypes"
 
 export const findTimerData = () => {
   const data = JSON.parse(localStorage.getItem(storageTypes.freeTime))
+
   if (data) {
     // starting time
     const time = new Date()
@@ -27,19 +28,22 @@ export const findTimerData = () => {
       }
     }
   }
+  return 0
 }
 
 export const parseMS = ms => {
-  // calculate passed time
-  const time = new Date()
-  time.setHours(8)
-  time.setMinutes(0)
-  time.setSeconds(0)
-  const now = new Date()
+  if (ms) {
+    // calculate passed time
+    const time = new Date()
+    time.setHours(8)
+    time.setMinutes(0)
+    time.setSeconds(0)
+    const now = new Date()
 
-  const newMS = new Date(time.getTime() + ms) - now.getTime()
+    const newMS = new Date(time.getTime() + ms) - now.getTime()
 
-  return newMS
+    return newMS
+  } else return 0
 }
 
 // returns formated string time MM:SS
