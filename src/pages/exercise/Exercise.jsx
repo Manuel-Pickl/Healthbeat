@@ -15,30 +15,35 @@ const exercises = {
     120,
     "schwer",
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur eius est dolores quo officia eaque non suscipit ipsam totam distinctio!",
+    "https://cdn.videvo.net/videvo_files/video/premium/video0025/large_watermarked/360_360-0406_preview.mp4"
   ],
   2: [
     "Dehnung des Rückens",
     210,
     "mittel",
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat, delectus.",
+    "https://s3.amazonaws.com/codecademy-content/courses/React/react_video-slow.mp4"
   ],
   3: [
     "Unterarmstütz",
     60,
     "schwer",
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus id magnam odio in delectus error.",
+    "https://cdn.videvo.net/videvo_files/video/premium/getty_59/large_watermarked/istock-979566630_preview.mp4"
   ],
   4: [
     "Arme strecken",
     150,
     "leicht",
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, est.",
+    "https://cdn.videvo.net/videvo_files/video/premium/video0400/large_watermarked/902-1_902-4058_preview.mp4"
   ],
   5: [
     "Fersen und Beine anheben",
     240,
     "leicht",
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione blanditiis corrupti laborum dicta, consequatur facilis quisquam delectus sint quae voluptas, velit quos odio consectetur sequi.",
+    "https://cdn.videvo.net/videvo_files/video/premium/video0391/large_watermarked/903_903-0468_preview.mp4"
   ],
 }
 
@@ -46,13 +51,21 @@ export default function Exercise() {
   const navigate = useNavigate()
   const buttonRef = useRef()
 
-  const [exerciseStarted, toggleExercise] = useState(false)
   const [skipButtonEnabled, toggleSkipButton] = useState(true)
   const [timerRunning, toggleTimerRunning] = useState(false)
   const [skipOptionsVisible, toggleSkipOptions] = useState(false)
   const [reason, setReason] = useState("")
   const [difficulty, setDifficulty] = useState("")
   const [exercise, setExercise] = useState(showNextExercise())
+  
+  const onVideoEnded = () => {
+    alert()
+    toggleSkipOptions(false)
+    setReason("")
+    setDifficulty("")
+    setExercise(showNextExercise())
+    toggleTimerRunning(false)
+  }
 
   // timer
   const [remainingTime, setRemainingTime] = useState(15 * 60)
@@ -81,14 +94,13 @@ export default function Exercise() {
     <>
       {/* ToDo - it does work */}
       <Styled.Main skipOptionsVisible={skipOptionsVisible}>
-        <ExerciseInfo exercise={exercise} />
+        <ExerciseInfo exercise={exercise} onVideoEnded={onVideoEnded} />
         {/* skip / play logic */}
-        {!exerciseStarted ? (
+        {!timerRunning ? (
           <div>
             <button
               id="startvideo"
               onClick={() => {
-                toggleExercise(true)
                 toggleTimerRunning(true)
               }}
             >
@@ -115,10 +127,7 @@ export default function Exercise() {
                     toggleSkipButton(false)
                     toggleSkipOptions(true)
                   } else {
-                    toggleSkipOptions(false)
-                    setReason("")
-                    setDifficulty("")
-                    setExercise(showNextExercise())
+                    onVideoEnded()
                   }
                 }}
                 disabled={!skipButtonEnabled}
@@ -130,9 +139,7 @@ export default function Exercise() {
           </div>
         ) : (
           <div>
-            <Styled.TimerButton
-              onClick={() => toggleTimerRunning(!timerRunning)}
-            >
+            <Styled.TimerButton>
               <ExerciseTimer
                 time={parseTime(remainingTime * 1000)}
                 timeLeft={15 * 60000}
@@ -142,6 +149,13 @@ export default function Exercise() {
             </Styled.TimerButton>
           </div>
         )}
+        <button
+          onClick={() => {
+            setExercise(showNextExercise())
+            toggleTimerRunning(false)
+          }}>
+            Test
+        </button>
       </Styled.Main>
     </>
   )
