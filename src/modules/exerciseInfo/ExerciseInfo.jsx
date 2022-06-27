@@ -24,7 +24,7 @@ export default function ExerciseInfo(props) {
           Übung: <span id="exName">{exerciseName}</span>
         </h2>
         <div id="VideoBackground">
-          <video width="auto" height="360" onEnded={onVideoEnded} key={address} controls>
+          <video width="auto" height="360" onEnded={onVideoEnded} key={address}>
             <source
               src={address}
               type="video/mp4"
