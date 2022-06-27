@@ -7,15 +7,16 @@ import { ReactComponent as Watch } from "assets/buttons/watch.svg"
 import * as Styled from "./ExerciseInfo.styles"
 
 export default function ExerciseInfo(props) {
-  const {exercise, onVideoEnded} = props
+  const {exercise, showNextExercise, timerRunning} = props
 
   const exerciseName = exercise[0]
   const difficulty = exercise[2]
   const duration = exercise[1] // in seconds
   const description = exercise[3]
   const address = exercise[4]
+  
   const [descriptionVisible, toggleDescriptionVisiblity] = useState(false)
-
+  
   return (
     <>
       {/* exercise details */}
@@ -24,7 +25,7 @@ export default function ExerciseInfo(props) {
           Übung: <span id="exName">{exerciseName}</span>
         </h2>
         <div id="VideoBackground">
-          <video width="auto" height="360" onEnded={onVideoEnded} key={address}>
+          <video width="auto" height="360" onEnded={showNextExercise} key={address} controls={!timerRunning} >
             <source
               src={address}
               type="video/mp4"

@@ -56,13 +56,15 @@ export default function Exercise() {
   const [skipOptionsVisible, toggleSkipOptions] = useState(false)
   const [reason, setReason] = useState("")
   const [difficulty, setDifficulty] = useState("")
-  const [exercise, setExercise] = useState(showNextExercise())
+  const [exercise, setRandomExercise] = useState(getRandomExercise())
   
-  const onVideoEnded = () => {
-    toggleSkipOptions(false)
+  const showNextExercise = () => {
+    // reset skip selection
     setReason("")
     setDifficulty("")
-    setExercise(showNextExercise())
+    
+    toggleSkipOptions(false)
+    setRandomExercise(getRandomExercise())
     toggleTimerRunning(false)
   }
 
@@ -91,7 +93,7 @@ export default function Exercise() {
     <>
       {/* ToDo - it does work */}
       <Styled.Main skipOptionsVisible={skipOptionsVisible}>
-        <ExerciseInfo exercise={exercise} onVideoEnded={onVideoEnded} />
+        <ExerciseInfo exercise={exercise} showNextExercise={showNextExercise} timerRunning={timerRunning} />
         {/* skip / play logic */}
         {!timerRunning ? (
           <div>
@@ -99,6 +101,9 @@ export default function Exercise() {
               id="startvideo"
               onClick={() => {
                 toggleTimerRunning(true)
+                let exerciseVideo = document.querySelector("#VideoBackground video")
+                exerciseVideo.currentTime = 0
+                exerciseVideo.play()
               }}
             >
               <StartVideo />
@@ -124,7 +129,7 @@ export default function Exercise() {
                     toggleSkipButton(false)
                     toggleSkipOptions(true)
                   } else {
-                    onVideoEnded()
+                    showNextExercise()
                   }
                 }}
                 disabled={!skipButtonEnabled}
@@ -146,13 +151,6 @@ export default function Exercise() {
             </Styled.TimerButton>
           </div>
         )}
-        <button
-          onClick={() => {
-            setExercise(showNextExercise())
-            toggleTimerRunning(false)
-          }}>
-            Test
-        </button>
       </Styled.Main>
     </>
   )
@@ -177,6 +175,6 @@ function randomIntFromInterval(min, max) {
 // hook for video end to call "showNextExercise()"
 // not possible now, as we have no videos
 
-function showNextExercise() {
+function getRandomExercise() {
   return exercises[randomIntFromInterval(1, Object.keys(exercises).length)]
 }
