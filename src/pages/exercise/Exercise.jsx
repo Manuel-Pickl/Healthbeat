@@ -59,7 +59,6 @@ export default function Exercise() {
   const [exercise, setExercise] = useState(showNextExercise())
   
   const onVideoEnded = () => {
-    alert()
     toggleSkipOptions(false)
     setReason("")
     setDifficulty("")
@@ -82,8 +81,6 @@ export default function Exercise() {
         navigate("/exercise-finished")
       }
     }, 1000)
-
-    console.log(reason, difficulty)
 
     return () => {
       clearInterval(timerInterval)
