@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { Route, Routes } from "react-router"
 import { AuthenticatedTemplate } from "@azure/msal-react"
 import { useAppContext } from "configs/appContext"
+import storageTypes from "configs/storageTypes"
 import { getUserDayCalendar } from "utils/graph"
 import { notify } from "utils/notification"
 import { findIana } from "windows-iana"
@@ -15,59 +16,64 @@ import ExerciseFinished from "pages/exerciseFinished/ExerciseFinished"
 import ExerciseTimer from "pages/exerciseTimer/ExerciseTimer"
 import LandingPage from "pages/landingPage/LandingPage"
 
-const withApp = Component => props => {
+function App() {
   const app = useAppContext()
-  return <Component {...props} app={app} />
-}
-class App extends React.Component {
-  async componentDidMount() {
-    if (!!window && this.props.app.user && this.props.app.authProvider) {
-      try {
-        // convert time for calendar
-        const ianaTimeZones = findIana(this.props.app.user?.timeZone)
 
-        // request calendar data
-        const calendar = await getUserDayCalendar(
-          this.props.app.authProvider,
-          this.props.app.user?.workingHours,
-          ianaTimeZones[0].valueOf(),
-          this.props.app.user?.email
-        )
+  useEffect(() => {
+    const loadEvents = async () => {
+      if (!!window && app.user && app.authProvider) {
+        try {
+          // convert time for calendar
+          const ianaTimeZones = findIana(app.user?.timeZone)
 
-        // destruct data
-        const { availabilityView } = calendar[0]
+          // request calendar data
+          const calendar = await getUserDayCalendar(
+            app.authProvider,
+            app.user?.workingHours,
+            ianaTimeZones[0].valueOf(),
+            app.user?.email
+          )
 
-        // create notifications
-        notify(availabilityView, window.location.href)
-      } catch (err) {
-        this.props.app.displayError(err.message)
+          // destruct data
+          const { availabilityView } = calendar[0]
+
+          // create notifications
+          !!!localStorage.getItem(storageTypes.timer) &&
+            notify(availabilityView, window.location.href)
+        } catch (err) {
+          app.displayError(err.message)
+        }
       }
     }
-  }
 
-  render() {
-    return (
-      <>
-        <Navigation />
-        <AuthenticatedTemplate>
-          <Greeting />
-        </AuthenticatedTemplate>
-        <Routes>
-          <Route
-            path="/"
-            element={this.props.app.user ? <ExerciseTimer /> : <LandingPage />}
-          />
-          <Route path="/complain-survey" element={<ComplainSurvey />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/exercise" element={<Exercise />} />
-          <Route path="/exercise-finished" element={<ExerciseFinished />} />
-        </Routes>
-      </>
-    )
-  }
+    loadEvents()
+
+    return () => {
+      localStorage.removeItem(storageTypes.timer)
+    }
+  })
+
+  return (
+    <>
+      <Navigation />
+      <AuthenticatedTemplate>
+        <Greeting />
+      </AuthenticatedTemplate>
+      <Routes>
+        <Route
+          path="/"
+          element={app.user ? <ExerciseTimer /> : <LandingPage />}
+        />
+        <Route path="/complain-survey" element={<ComplainSurvey />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/exercise" element={<Exercise />} />
+        <Route path="/exercise-finished" element={<ExerciseFinished />} />
+      </Routes>
+    </>
+  )
 }
 
-export default withApp(App)
+export default App
 
 // request permission on page load
 !!document &&

@@ -80,12 +80,9 @@ export function extractFreeTimeslots(timeslots) {
  *
  */
 function createNotificationTimer(freeTime, url) {
-  // ToDo:
-  // - url ist noch falsch -> an anderer Stelle auch kommentiert - verstehe ich nicht
-  // - was soll mit dem zweiten value in freeTime gemacht werden? - map und mit setTimeout kombinieren
-
   // get complain region
   const complainSurvey = localStorage.getItem(storageTypes.complainSurvey)
+
   let complainRegion = !!complainSurvey
     ? JSON.parse(complainSurvey)["region"]
     : null
@@ -95,16 +92,19 @@ function createNotificationTimer(freeTime, url) {
       ? "Wir haben Übungen für Dich vorbereitet."
       : `Wir haben Übungen gegen ${complainRegion}-Beschwerden für Dich vorbereitet.`
 
-  setTimeout(function () {
-    var notification = new Notification("Zeit für etwas Sport", {
-      icon: notificationLogo,
-      body: `Du hast nun für 15 Minuten keine weiteren Termine\n\n${regionExerciseMessage}`,
-    })
-    notification.onclick = function () {
-      window.open(url)
-    }
-  }, freeTime[0])
+  freeTime.map(t =>
+    setTimeout(function () {
+      var notification = new Notification("Zeit für etwas Sport", {
+        icon: notificationLogo,
+        body: `Du hast nun für 15 Minuten keine weiteren Termine\n\n${regionExerciseMessage}`,
+      })
+      notification.onclick = function () {
+        window.open(url + "exercise")
+      }
+    }, t)
+  )
 
   // set free times
   localStorage.setItem(storageTypes.freeTime, JSON.stringify(freeTime))
+  localStorage.setItem(storageTypes.timer, JSON.stringify(true))
 }

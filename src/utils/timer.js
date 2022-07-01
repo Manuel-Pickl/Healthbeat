@@ -28,7 +28,7 @@ export const findTimerData = () => {
       }
     }
   }
-  return 0
+  return -1
 }
 
 export const parseMS = ms => {

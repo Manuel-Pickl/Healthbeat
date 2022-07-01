@@ -52,7 +52,11 @@ export default function ExerciseTimer() {
         time={time}
         timeLeft={timeLeft}
         currentTime={ms}
-        end={ms === 0 && data && data.indexOf(ms) === -1}
+        end={
+          (ms === -1 && data && data.indexOf(ms) === -1) ||
+          data === null ||
+          (data && data.length === 0)
+        }
       />
       <Button onClick={() => navigate("/exercise")}>
         Übungseinheit starten
