@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router"
 import { ReactComponent as Complain } from "assets/complainpage/complain.svg"
 import Pain from "assets/complainpage/pain.png"
 import storageTypes from "configs/storageTypes"
@@ -22,12 +21,11 @@ const complaintDegree = {
   10: "Stärkster vorstellbarer Schmerz",
 }
 
-export default function ComplainSurvey() {
+export default function ComplainSurvey({ close }) {
   const [visbility, toggleVisiblity] = useState(false)
   const [painValue, setPainValue] = useState(null)
   const [disabled, setButton] = useState(true)
   const [currentRegion, setRegion] = useState("")
-  const navigate = useNavigate()
 
   const saveSurvey = () => {
     // next survey in 4 weeks
@@ -46,7 +44,7 @@ export default function ComplainSurvey() {
   }
 
   return (
-    <>
+    <Styled.Wrapper>
       {!visbility ? (
         <Styled.Container>
           <Styled.Content>
@@ -100,7 +98,7 @@ export default function ComplainSurvey() {
                         name="pain-range"
                         onClick={() => setPainValue(key)}
                       />
-                      {i + " - " + complaintDegree[key]}
+                      {complaintDegree[key]}
                     </label>
                   </li>
                 ) : null
@@ -123,7 +121,7 @@ export default function ComplainSurvey() {
                 link={"/"}
                 onClick={() => {
                   saveSurvey()
-                  navigate("/")
+                  close(false)
                 }}
                 disabled={!!!painValue}
               />
@@ -131,6 +129,6 @@ export default function ComplainSurvey() {
           </Styled.Content>
         </Styled.Container>
       )}
-    </>
+    </Styled.Wrapper>
   )
 }

@@ -10,6 +10,7 @@ export const Container = styled.div`
   max-width: 500px;
 
   section {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -17,6 +18,21 @@ export const Container = styled.div`
     padding: var(--gap-16);
     margin-bottom: var(--gap-16);
     border-radius: 5px;
+
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      width: 25px;
+      min-width: 15px;
+      height: 25px;
+      margin: var(--gap-8);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
 
     &:last-child {
       margin-bottom: 0;

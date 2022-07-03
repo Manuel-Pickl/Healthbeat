@@ -15,35 +15,35 @@ const exercises = {
     120,
     "schwer",
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur eius est dolores quo officia eaque non suscipit ipsam totam distinctio!",
-    "https://cdn.videvo.net/videvo_files/video/premium/video0025/large_watermarked/360_360-0406_preview.mp4"
+    "https://cdn.videvo.net/videvo_files/video/premium/video0025/large_watermarked/360_360-0406_preview.mp4",
   ],
   2: [
     "Dehnung des Rückens",
     210,
     "mittel",
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat, delectus.",
-    "https://s3.amazonaws.com/codecademy-content/courses/React/react_video-slow.mp4"
+    "https://s3.amazonaws.com/codecademy-content/courses/React/react_video-slow.mp4",
   ],
   3: [
     "Unterarmstütz",
     60,
     "schwer",
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus id magnam odio in delectus error.",
-    "https://cdn.videvo.net/videvo_files/video/premium/getty_59/large_watermarked/istock-979566630_preview.mp4"
+    "https://cdn.videvo.net/videvo_files/video/premium/getty_59/large_watermarked/istock-979566630_preview.mp4",
   ],
   4: [
     "Arme strecken",
     150,
     "leicht",
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, est.",
-    "https://cdn.videvo.net/videvo_files/video/premium/video0400/large_watermarked/902-1_902-4058_preview.mp4"
+    "https://cdn.videvo.net/videvo_files/video/premium/video0400/large_watermarked/902-1_902-4058_preview.mp4",
   ],
   5: [
     "Fersen und Beine anheben",
     240,
     "leicht",
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione blanditiis corrupti laborum dicta, consequatur facilis quisquam delectus sint quae voluptas, velit quos odio consectetur sequi.",
-    "https://cdn.videvo.net/videvo_files/video/premium/video0391/large_watermarked/903_903-0468_preview.mp4"
+    "https://cdn.videvo.net/videvo_files/video/premium/video0391/large_watermarked/903_903-0468_preview.mp4",
   ],
 }
 
@@ -57,12 +57,12 @@ export default function Exercise() {
   const [reason, setReason] = useState("")
   const [difficulty, setDifficulty] = useState("")
   const [exercise, setRandomExercise] = useState(getRandomExercise())
-  
+
   const showNextExercise = () => {
     // reset skip selection
     setReason("")
     setDifficulty("")
-    
+
     toggleSkipOptions(false)
     setRandomExercise(getRandomExercise())
     toggleTimerRunning(false)
@@ -93,7 +93,11 @@ export default function Exercise() {
     <>
       {/* ToDo - it does work */}
       <Styled.Main skipOptionsVisible={skipOptionsVisible}>
-        <ExerciseInfo exercise={exercise} showNextExercise={showNextExercise} timerRunning={timerRunning} />
+        <ExerciseInfo
+          exercise={exercise}
+          showNextExercise={showNextExercise}
+          timerRunning={timerRunning}
+        />
         {/* skip / play logic */}
         {!timerRunning ? (
           <div>
@@ -101,7 +105,9 @@ export default function Exercise() {
               id="startvideo"
               onClick={() => {
                 toggleTimerRunning(true)
-                let exerciseVideo = document.querySelector("#VideoBackground video")
+                let exerciseVideo = document.querySelector(
+                  "#VideoBackground video"
+                )
                 exerciseVideo.currentTime = 0
                 exerciseVideo.play()
               }}
@@ -118,6 +124,7 @@ export default function Exercise() {
                     setReason={setReason}
                     toggleSkipButton={bool => toggleSkipButton(bool)}
                     forwardedRef={buttonRef}
+                    toggleSkipOptions={toggleSkipOptions}
                   />
                 </>
               )}

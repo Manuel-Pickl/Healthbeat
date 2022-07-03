@@ -20,6 +20,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 500px;
   padding: var(--gap-16);
+  border-radius: 5px;
 
   ul {
     list-style: none;
@@ -107,4 +108,17 @@ export const ButtonContainer = styled.div`
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
   }
+`
+
+export const Wrapper = styled.div`
+  position: absolute;
+  display: flex;
+  margin: auto;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
 `

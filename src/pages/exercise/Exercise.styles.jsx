@@ -97,7 +97,7 @@ export const Background = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.25);
 `
 
 export const PopupContainer = styled.div`

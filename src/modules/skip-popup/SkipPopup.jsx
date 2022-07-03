@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react"
-import { useEffect } from "react"
+import React, { useEffect, useRef, useState } from "react"
+
+import { Button } from "modules/common/components/buttons/components/Button.styles"
 
 import * as Styled from "./SkipPopup.styles"
 
@@ -17,6 +18,7 @@ export default function SkipPopup({
   setReason,
   setDifficulty,
   forwardedRef,
+  toggleSkipOptions,
 }) {
   const [r, setR] = useState("")
   const [d, setD] = useState("")
@@ -40,6 +42,14 @@ export default function SkipPopup({
   return (
     <Styled.Container top={offsetTop} ref={containerRef}>
       <section>
+        <Button
+          onClick={() => {
+            toggleSkipOptions(false)
+            toggleSkipButton(true)
+          }}
+        >
+          X
+        </Button>
         <h2>Bitte verrate uns den Grund</h2>
         <ul>
           {reasons.map(reason => (

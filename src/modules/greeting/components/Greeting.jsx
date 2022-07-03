@@ -7,7 +7,7 @@ import Button from "modules/common/components/buttons/components/Button"
 
 import { Container, Content } from "./Greeting.styles"
 
-export default function Greeting() {
+export default function Greeting({ greetingShow, close }) {
   const app = useAppContext()
   const rhetoQuest = " Na, heute schon Sport gemacht?"
   const [show, setShow] = useState(true)
@@ -27,9 +27,7 @@ export default function Greeting() {
     <Container
       show={
         // show popup only once per sign in
-        (show &&
-          sessionStorage.getItem(storageTypes.greeted) &&
-          !JSON.parse(sessionStorage.getItem(storageTypes.greeted))) ||
+        (show && greetingShow) ||
         (show && !!!sessionStorage.getItem(storageTypes.greeted))
       }
       onClick={e => {
@@ -47,6 +45,7 @@ export default function Greeting() {
           onClick={() => {
             setShow(false)
             sessionStorage.setItem(storageTypes.greeted, "true")
+            close(true)
           }}
         />
       </Content>
