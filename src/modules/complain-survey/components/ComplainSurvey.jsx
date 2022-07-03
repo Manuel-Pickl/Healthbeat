@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { ReactComponent as Complain } from "assets/complainpage/complain.svg"
+import Complain from "assets/complainpage/complain.png"
 import Pain from "assets/complainpage/pain.png"
 import storageTypes from "configs/storageTypes"
 
@@ -50,7 +50,7 @@ export default function ComplainSurvey({ close }) {
           <Styled.Content>
             <h1>Beschwerdeabfrage</h1>
             <Styled.SVGContainer>
-              <Complain />
+              <img src={Complain} alt="" />
             </Styled.SVGContainer>
             <h1>Wo hast du heute Beschwerden?</h1>
           </Styled.Content>

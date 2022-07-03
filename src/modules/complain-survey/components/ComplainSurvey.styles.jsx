@@ -4,6 +4,7 @@ export const SVGContainer = styled.div`
   height: 100%;
   max-height: 321px;
   margin: var(--gap-16) 0;
+  background: white;
 
   & > * {
     width: 100%;

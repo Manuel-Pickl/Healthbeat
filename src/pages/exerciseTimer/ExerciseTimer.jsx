@@ -20,12 +20,13 @@ export default function ExerciseTimer() {
     const timerData = findTimerData()
 
     // calculate current time
-    const id = setInterval(() => setMS(parseMS(timerData)), 1000)
+    const id =
+      timerData > 0 ? setInterval(() => setMS(parseMS(timerData)), 1000) : 0
 
     // set current time in format MM:SS
     setTime(parseTime(ms))
 
-    if (data) {
+    if (data && timerData !== -1) {
       // calculate timeleft
       const idx = data.indexOf(timerData)
 
@@ -53,7 +54,7 @@ export default function ExerciseTimer() {
         timeLeft={timeLeft}
         currentTime={ms}
         end={
-          (ms === -1 && data && data.indexOf(ms) === -1) ||
+          (findTimerData() === -1 && data && data.indexOf(ms) === -1) ||
           data === null ||
           (data && data.length === 0)
         }
