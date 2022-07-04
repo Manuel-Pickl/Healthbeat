@@ -6,8 +6,11 @@ export const Container = styled.div`
   right: 0;
   left: 0;
   margin: auto;
+  padding: var(--gap-8);
   width: 100%;
   max-width: 500px;
+  background-color: white;
+  border-radius: 5px;
 
   section {
     position: relative;
@@ -16,7 +19,7 @@ export const Container = styled.div`
     align-items: left;
     background: var(--clr-popup);
     padding: var(--gap-16);
-    margin-bottom: var(--gap-16);
+    margin-bottom: var(--gap-8);
     border-radius: 5px;
 
     button {

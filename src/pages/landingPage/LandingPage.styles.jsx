@@ -47,7 +47,7 @@ export const Main = styled.main`
     margin-top: var(--gap-40);
   }
   & h2 {
-    text-align: center;
+    text-align: left;
   }
 
   & article,
