@@ -12,8 +12,8 @@ export const findTimerData = () => {
 
     // test data
     const testTime = new Date()
-    testTime.setHours(16)
-    testTime.setMinutes(0)
+    testTime.setHours(20)
+    testTime.setMinutes(30)
     testTime.setSeconds(0)
     data.push(testTime.getTime() - time.getTime())
 
